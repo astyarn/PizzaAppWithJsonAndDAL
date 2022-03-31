@@ -107,7 +107,7 @@ namespace PizzaAppWithJsonAndDAL
 
         private void CustomizeSelctedPizza(object sender, RoutedEventArgs e)
         {
-            //Open CustomPizzawindow and send the current selected Pizza to it
+            //Open CustomPizzawindow and send the current selected Pizza to it!
         }
     }
 }
