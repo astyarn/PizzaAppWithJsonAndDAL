@@ -1,0 +1,12 @@
+[
+  {
+    "Id": 0,
+    "Navn": "Tomatsovs",
+    "Pris": 10.0
+  },
+  {
+    "Id": 1,
+    "Navn": "Kødsovs",
+    "Pris": 15.0
+  }
+]

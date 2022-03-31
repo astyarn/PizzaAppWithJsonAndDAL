@@ -1,0 +1,96 @@
+[
+  {
+    "Bund": {
+      "Id": 0,
+      "Navn": "Lys bund",
+      "Pris": 10.0
+    },
+    "Sovs": {
+      "Id": 0,
+      "Navn": "Tomatsovs",
+      "Pris": 10.0
+    },
+    "Ost": {
+      "Id": 0,
+      "Navn": "Mozzarella",
+      "Pris": 10.0
+    },
+    "PizzaTopping": [
+    ],
+    "Id": 0,
+    "Navn": "Margherita",
+    "Pris": 30.0,
+    "Size": 1
+  },
+  {
+    "Bund": {
+      "Id": 1,
+      "Navn": "Grov bund",
+      "Pris": 15.0
+    },
+    "Sovs": {
+      "Id": 0,
+      "Navn": "Tomatsovs",
+      "Pris": 10.0
+    },
+    "Ost": {
+      "Id": 1,
+      "Navn": "Cheddar",
+      "Pris": 15.0
+    },
+    "PizzaTopping": [
+      {
+        "Id": 3,
+        "Navn": "Salat",
+        "Pris": 10.0
+      },
+      {
+        "Id": 1,
+        "Navn": "Kebab",
+        "Pris": 6.0
+      }
+    ],
+    "Id": 1,
+    "Navn": "Salatpizza",
+    "Pris": 56.0,
+    "Size": 1
+  },
+  {
+    "Bund": {
+      "Id": 0,
+      "Navn": "Lys bund",
+      "Pris": 10.0
+    },
+    "Sovs": {
+      "Id": 1,
+      "Navn": "Kødsovs",
+      "Pris": 15.0
+    },
+    "Ost": {
+      "Id": 0,
+      "Navn": "Mozzarella",
+      "Pris": 10.0
+    },
+    "PizzaTopping": [
+      {
+        "Id": 2,
+        "Navn": "Bacon",
+        "Pris": 7.0
+      },
+      {
+        "Id": 0,
+        "Navn": "Skinke",
+        "Pris": 5.0
+      },
+      {
+        "Id": 4,
+        "Navn": "Pepperoni",
+        "Pris": 5.5
+      }
+    ],
+    "Id": 2,
+    "Navn": "Kødpizza",
+    "Pris": 52.5,
+    "Size": 1
+  }
+]

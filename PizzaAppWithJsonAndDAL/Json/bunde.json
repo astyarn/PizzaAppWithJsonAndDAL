@@ -1,0 +1,12 @@
+[
+  {
+    "Id": 0,
+    "Navn": "Lys bund",
+    "Pris": 10.0
+  },
+  {
+    "Id": 1,
+    "Navn": "Grov bund",
+    "Pris": 15.0
+  }
+]

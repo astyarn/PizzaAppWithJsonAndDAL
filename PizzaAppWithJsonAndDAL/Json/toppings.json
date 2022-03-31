@@ -1,0 +1,27 @@
+[
+  {
+    "Id": 0,
+    "Navn": "Skinke",
+    "Pris": 5.0
+  },
+  {
+    "Id": 1,
+    "Navn": "Kebab",
+    "Pris": 6.0
+  },
+  {
+    "Id": 2,
+    "Navn": "Bacon",
+    "Pris": 7.0
+  },
+  {
+    "Id": 3,
+    "Navn": "Salat",
+    "Pris": 10.0
+  },
+  {
+    "Id": 4,
+    "Navn": "Pepperoni",
+    "Pris": 5.5
+  }
+]

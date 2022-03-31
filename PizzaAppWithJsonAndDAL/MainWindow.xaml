@@ -1,0 +1,33 @@
+﻿<Window x:Class="PizzaAppWithJsonAndDAL.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PizzaAppWithJsonAndDAL"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="500" Width="1200">
+    <Grid>
+        <ListBox ItemsSource="{Binding MenuPizzaBeskrivelser}" SelectedItem="{Binding SelectionMenu}" Width="400" Margin="20,10,780,10">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    
+                    <Label Content="{Binding menuText}" Tag="{Binding menuID}"/>
+
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <ListBox ItemsSource="{Binding VarekurvBeskrivelser}" SelectedItem="{Binding SelectionVarekurv}" Width="400" Margin="780,10,20,10">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Label Content="{Binding menuText}" Tag="{Binding menuID}"/>
+
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <Button Content="Tilføj" HorizontalAlignment="Left" Margin="425,420,0,0" VerticalAlignment="Top" Width="60" Click="TilføjVareTilVarekurv"/>
+        <Button Content="Fjern" HorizontalAlignment="Left" Margin="715,420,0,0" VerticalAlignment="Top" Width="60" Click="FjernVareFraVarekurv"/>
+        <Button Content="Customize" HorizontalAlignment="Left" Margin="425,395,0,0" VerticalAlignment="Top" Width="60" Click="CustomizeSelctedPizza"/>
+        <TextBlock Margin="535,0,425,426" TextWrapping="Wrap" Text="{Binding TextSamletPrisAfKurv}" VerticalAlignment="Bottom" FontSize="16"/>
+
+    </Grid>
+</Window>
