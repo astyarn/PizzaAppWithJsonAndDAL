@@ -29,6 +29,7 @@ namespace PizzaAppWithJsonAndDAL.ViewModels
             BundTilSelectionBox();
             SovsTilSelectionBox();
             OstTilSelectionBox();
+
         }
 
         public event PropertyChangedEventHandler? PropertyChanged;

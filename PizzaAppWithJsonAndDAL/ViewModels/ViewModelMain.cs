@@ -24,6 +24,13 @@ namespace PizzaAppWithJsonAndDAL.ViewModels
             MenuPizzaBeskrivelser = dal.FåPizzaBeskrivelseOgId();
         }
         //Metoder
+
+        public int GetSelectedPizzaId()
+        {
+            //ADD CODE 
+            return -1;
+        }
+
         public void LægVareIKurvFraMenu()
         {
             if (SelectionMenu != null)
