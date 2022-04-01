@@ -60,7 +60,7 @@ namespace PizzaAppWithJsonAndDAL.DAL
             ObservableCollection<ViewModels.VarePresenter> temp =  new ObservableCollection<ViewModels.VarePresenter>();
             foreach (Pizza item in PizzaMenu)
             {
-                string s = $"{item.Navn} ({item.Pris}) indeholder: " +
+                string s = $"{item.Navn} ({item.Size}) {item.Pris} kr. indeholder: " +
                            $"{item.Bund.Navn}, {item.Sovs.Navn}, {item.Ost.Navn}, ";
                 foreach (Ting.Topping top in item.PizzaTopping)
                 {

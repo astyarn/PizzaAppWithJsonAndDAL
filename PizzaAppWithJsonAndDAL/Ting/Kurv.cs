@@ -51,7 +51,7 @@ namespace PizzaAppWithJsonAndDAL.Ting
             {
                 if (item is Pizza)
                 {
-                    string s = $"{item.Navn} ({item.Pris}) indeholder: " +
+                    string s = $"{item.Navn} ({item.Size}) {item.Pris} kr. indeholder: " +
                                $"{(item as Pizza).Bund.Navn}, {(item as Pizza).Sovs.Navn}, {(item as Pizza).Ost.Navn}, ";
                     foreach (Ting.Topping top in (item as Pizza).PizzaTopping)
                     {
