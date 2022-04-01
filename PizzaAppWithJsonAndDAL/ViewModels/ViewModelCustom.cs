@@ -64,7 +64,19 @@ namespace PizzaAppWithJsonAndDAL.ViewModels
                     break;
                 }
             }
-
+            if (pizzaToCustomize.PizzaTopping != null)
+            {
+                foreach (Topping top in pizzaToCustomize.PizzaTopping)
+                {
+                    foreach(ToppingPresenterCheck tpc in TextListeMedToppings)
+                    {
+                        if(top.Id == tpc.menuID)
+                        {
+                            tpc.Checked = true;
+                        }
+                    }
+                }
+            }
         }
 
         public event PropertyChangedEventHandler? PropertyChanged;
@@ -79,13 +91,13 @@ namespace PizzaAppWithJsonAndDAL.ViewModels
         }
         void ToppingTilSelectionMenu()
         {
-            ObservableCollection<IngredientPresenter> temp = new ObservableCollection<IngredientPresenter>();
+            ObservableCollection<ToppingPresenterCheck> temp = new ObservableCollection<ToppingPresenterCheck>();
             
             foreach (Topping topping in ToppingListe)
             {
                 string s = $"{topping.Navn} ({topping.Pris}).";
 
-                temp.Add(new IngredientPresenter(topping.Id, s));
+                temp.Add(new ToppingPresenterCheck(topping.Id, s));
             }
             TextListeMedToppings = temp;
         }
@@ -128,8 +140,8 @@ namespace PizzaAppWithJsonAndDAL.ViewModels
             TextListeMedOst = temp;
         }
 
-        private ObservableCollection<IngredientPresenter> _listeMedToppings;
-        public ObservableCollection<IngredientPresenter> TextListeMedToppings
+        private ObservableCollection<ToppingPresenterCheck> _listeMedToppings;
+        public ObservableCollection<ToppingPresenterCheck> TextListeMedToppings
         {
             get { return _listeMedToppings; }
             set
