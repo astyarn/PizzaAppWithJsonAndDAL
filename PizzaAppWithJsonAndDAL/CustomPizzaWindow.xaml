@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="CustomPizzaWindow" Height="600" Width="1000">
     <Grid>
-        <ComboBox ItemsSource="{Binding}" HorizontalAlignment="Left" Margin="25,35,0,0" VerticalAlignment="Top" Width="120" FontSize="16" Height="40" >
+        <ComboBox ItemsSource="{Binding}" HorizontalAlignment="Left" Margin="25,35,0,0" VerticalAlignment="Top" Width="180" FontSize="16" Height="40" >
             <ComboBox.ItemTemplate>
                 <DataTemplate>
 
@@ -16,7 +16,7 @@
                 </DataTemplate>
             </ComboBox.ItemTemplate>
         </ComboBox>
-        <ComboBox ItemsSource="{Binding TextListeMedBunde}" HorizontalAlignment="Left" Margin="25,95,0,0" VerticalAlignment="Top" Width="120" FontSize="16" Height="40">
+        <ComboBox ItemsSource="{Binding TextListeMedBunde}" SelectedItem="{Binding BundeSelectedItem}" HorizontalAlignment="Left" Margin="25,95,0,0" VerticalAlignment="Top" Width="180" FontSize="16" Height="40">
             <ComboBox.ItemTemplate>
                 <DataTemplate>
 
@@ -25,7 +25,7 @@
                 </DataTemplate>
             </ComboBox.ItemTemplate>
         </ComboBox>
-        <ComboBox ItemsSource="{Binding TextListeMedSovs}" HorizontalAlignment="Left" Margin="25,157,0,0" VerticalAlignment="Top" Width="120" FontSize="16" Height="40">
+        <ComboBox ItemsSource="{Binding TextListeMedSovs}" SelectedItem="{Binding SovsSelectedItem}" HorizontalAlignment="Left" Margin="25,157,0,0" VerticalAlignment="Top" Width="180" FontSize="16" Height="40">
             <ComboBox.ItemTemplate>
                 <DataTemplate>
 
@@ -34,7 +34,7 @@
                 </DataTemplate>
             </ComboBox.ItemTemplate>
         </ComboBox>
-        <ComboBox ItemsSource="{Binding TextListeMedOst}" HorizontalAlignment="Left" Margin="25,216,0,0" VerticalAlignment="Top" Width="120" FontSize="16" Height="40">
+        <ComboBox ItemsSource="{Binding TextListeMedOst}" SelectedItem="{Binding OstSelectedItem}" HorizontalAlignment="Left" Margin="25,216,0,0" VerticalAlignment="Top" Width="180" FontSize="16" Height="40">
             <ComboBox.ItemTemplate>
                 <DataTemplate>
 
@@ -45,7 +45,7 @@
         </ComboBox>
 
         <TextBlock Margin="0,0,50,529" TextWrapping="Wrap" Text="Max antal toppings" FontSize="24" HorizontalAlignment="Right" Width="222" Height="32" VerticalAlignment="Bottom"/>
-        <ListBox ItemsSource="{Binding TextListeMedToppings}" Margin="180,0,420,0" FontSize="16">
+        <ListBox ItemsSource="{Binding TextListeMedToppings}" Margin="256,0,344,0" FontSize="18">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <CheckBox Content="{Binding menuText}" Tag="{Binding menuID}" Checked="CheckBoxZone_Checked" IsChecked="{Binding Checked}" Unchecked="CheckBoxZone_UnChecked"/>
@@ -53,7 +53,7 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        <Button Content="Læg i kurv" Margin="0,0,551,42" HorizontalAlignment="Right" Width="110" Height="30" VerticalAlignment="Bottom" FontSize="14"/>
+        <Button Content="Læg i kurv" Margin="0,0,50,40" HorizontalAlignment="Right" Width="110" Height="30" VerticalAlignment="Bottom" FontSize="14"/>
 
 
     </Grid>

@@ -33,7 +33,37 @@ namespace PizzaAppWithJsonAndDAL.ViewModels
             OstTilSelectionBox();
 
             pizzaToCustomize = dal.GetPizzaById(pizzaIdToCustomize);
+            InitializeSelectionsOfPizzaParts();
 
+
+        }
+
+        private void InitializeSelectionsOfPizzaParts()
+        {
+            foreach (IngredientPresenter bt in TextListeMedBunde)
+            {
+                if (bt.menuID == pizzaToCustomize.Bund.Id)
+                {
+                    BundeSelectedItem = bt;
+                    break;
+                }
+            }
+            foreach (IngredientPresenter st in TextListeMedSovs)
+            {
+                if (st.menuID == pizzaToCustomize.Sovs.Id)
+                {
+                    SovsSelectedItem = st;
+                    break;
+                }
+            }
+            foreach (IngredientPresenter ot in TextListeMedOst)
+            {
+                if (ot.menuID == pizzaToCustomize.Ost.Id)
+                {
+                    OstSelectedItem = ot;
+                    break;
+                }
+            }
 
         }
 
@@ -117,6 +147,13 @@ namespace PizzaAppWithJsonAndDAL.ViewModels
                 OnPropertyChanged(nameof(TextListeMedBunde));
             }
         }
+        private IngredientPresenter _bundeSelectedItem;
+        public IngredientPresenter BundeSelectedItem
+        {
+            get { return _bundeSelectedItem; }
+            set { _bundeSelectedItem = value; }
+        }
+
         private ObservableCollection<IngredientPresenter> _textListeMedSovs;
         public ObservableCollection<IngredientPresenter> TextListeMedSovs
         {
@@ -127,6 +164,13 @@ namespace PizzaAppWithJsonAndDAL.ViewModels
                 OnPropertyChanged(nameof(TextListeMedSovs));
             }
         }
+        private IngredientPresenter _sovsSelectedItem;
+        public IngredientPresenter SovsSelectedItem
+        {
+            get { return _sovsSelectedItem; }
+            set { _sovsSelectedItem = value; }
+        }
+
         private ObservableCollection<IngredientPresenter> _textListeMedOst;
         public ObservableCollection<IngredientPresenter> TextListeMedOst
         {
@@ -136,6 +180,12 @@ namespace PizzaAppWithJsonAndDAL.ViewModels
                 _textListeMedOst = value;
                 OnPropertyChanged(nameof(TextListeMedOst));
             }
+        }
+        private IngredientPresenter _ostSelectedItem;
+        public IngredientPresenter OstSelectedItem
+        {
+            get { return _ostSelectedItem; }
+            set { _ostSelectedItem = value; }
         }
 
     }
