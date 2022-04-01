@@ -1,4 +1,5 @@
-﻿using PizzaAppWithJsonAndDAL.Ting;
+﻿using PizzaAppWithJsonAndDAL.DAL;
+using PizzaAppWithJsonAndDAL.Ting;
 using PizzaAppWithJsonAndDAL.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -21,10 +22,13 @@ namespace PizzaAppWithJsonAndDAL
     /// </summary>
     public partial class CustomPizzaWindow : Window
     {
-        public CustomPizzaWindow()
+        ViewModelCustom vm;
+
+        public CustomPizzaWindow(int SelectedPizzaId)
         {
             InitializeComponent();
-            ViewModelCustom vm = new ViewModelCustom();
+            vm = new ViewModelCustom(SelectedPizzaId);
+
             DataContext = vm;
         }
 

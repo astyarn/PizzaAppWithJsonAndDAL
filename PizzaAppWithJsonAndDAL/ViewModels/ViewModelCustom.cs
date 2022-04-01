@@ -17,7 +17,9 @@ namespace PizzaAppWithJsonAndDAL.ViewModels
         ObservableCollection<Bund> BundListe;
         ObservableCollection<Sovs> SovsListe;
         ObservableCollection<Ost> OstListe;
-        public ViewModelCustom()
+
+        Pizza pizzaToCustomize;
+        public ViewModelCustom(int pizzaIdToCustomize)
         {
             dal = new DAL.VarerDAL();
             ToppingListe = dal.GetAllToppings();
@@ -29,6 +31,9 @@ namespace PizzaAppWithJsonAndDAL.ViewModels
             BundTilSelectionBox();
             SovsTilSelectionBox();
             OstTilSelectionBox();
+
+            pizzaToCustomize = dal.GetPizzaById(pizzaIdToCustomize);
+
 
         }
 

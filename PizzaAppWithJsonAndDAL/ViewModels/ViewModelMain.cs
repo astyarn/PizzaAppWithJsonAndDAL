@@ -27,8 +27,7 @@ namespace PizzaAppWithJsonAndDAL.ViewModels
 
         public int GetSelectedPizzaId()
         {
-            //ADD CODE 
-            return -1;
+            return SelectionMenu.menuID;
         }
 
         public void LægVareIKurvFraMenu()
