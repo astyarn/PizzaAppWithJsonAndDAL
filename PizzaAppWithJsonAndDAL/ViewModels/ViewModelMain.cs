@@ -18,8 +18,8 @@ namespace PizzaAppWithJsonAndDAL.ViewModels
             dal = new DAL.VarerDAL();
             Varekurv = new Kurv();
 
-            MenuPizzaBeskrivelser = new ObservableCollection<PizzaPresenter>();
-            VarekurvBeskrivelser = new ObservableCollection<PizzaPresenter>();
+            MenuPizzaBeskrivelser = new ObservableCollection<VarePresenter>();
+            VarekurvBeskrivelser = new ObservableCollection<VarePresenter>();
             
             MenuPizzaBeskrivelser = dal.FåPizzaBeskrivelseOgId();
         }
@@ -70,9 +70,9 @@ namespace PizzaAppWithJsonAndDAL.ViewModels
             }
         }
 
-        private ObservableCollection<PizzaPresenter> _menuPizzaBeskrivelser;
+        private ObservableCollection<VarePresenter> _menuPizzaBeskrivelser;
 
-        public ObservableCollection<PizzaPresenter> MenuPizzaBeskrivelser
+        public ObservableCollection<VarePresenter> MenuPizzaBeskrivelser
         {
             get { return _menuPizzaBeskrivelser; }
             set { 
@@ -81,12 +81,12 @@ namespace PizzaAppWithJsonAndDAL.ViewModels
             }
         }
 
-        public PizzaPresenter SelectionMenu { get; set; }
+        public VarePresenter SelectionMenu { get; set; }
         
-        public PizzaPresenter SelectionVarekurv { get; set; }
+        public VarePresenter SelectionVarekurv { get; set; }
 
-        private ObservableCollection<PizzaPresenter> _varekurvBeskrivelser;
-        public ObservableCollection<PizzaPresenter> VarekurvBeskrivelser
+        private ObservableCollection<VarePresenter> _varekurvBeskrivelser;
+        public ObservableCollection<VarePresenter> VarekurvBeskrivelser
         {
             get { return _varekurvBeskrivelser; }
             set

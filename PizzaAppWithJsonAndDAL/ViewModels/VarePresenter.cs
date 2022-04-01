@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace PizzaAppWithJsonAndDAL.ViewModels
 {
-    internal class PizzaPresenter
+    internal class VarePresenter
     {
         public string menuText { get; set; }
         public int menuID { get; set; }
 
-        public PizzaPresenter(int iId, string iText)
+        public VarePresenter(int iId, string iText)
         {
             menuID = iId;
             menuText = iText;

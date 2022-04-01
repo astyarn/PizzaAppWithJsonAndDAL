@@ -55,9 +55,9 @@ namespace PizzaAppWithJsonAndDAL.DAL
 
         //More functionality to come ...
 
-        public ObservableCollection<ViewModels.PizzaPresenter> FåPizzaBeskrivelseOgId()
+        public ObservableCollection<ViewModels.VarePresenter> FåPizzaBeskrivelseOgId()
         {
-            ObservableCollection<ViewModels.PizzaPresenter> temp =  new ObservableCollection<ViewModels.PizzaPresenter>();
+            ObservableCollection<ViewModels.VarePresenter> temp =  new ObservableCollection<ViewModels.VarePresenter>();
             foreach (Pizza item in PizzaMenu)
             {
                 string s = $"{item.Navn} ({item.Pris}) indeholder: " +
@@ -66,7 +66,7 @@ namespace PizzaAppWithJsonAndDAL.DAL
                 {
                     s += top.Navn + ", ";
                 }
-                temp.Add(new ViewModels.PizzaPresenter(item.Id, s));
+                temp.Add(new ViewModels.VarePresenter(item.Id, s));
             }
             return temp;
         }

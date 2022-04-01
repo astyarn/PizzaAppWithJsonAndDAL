@@ -44,9 +44,9 @@ namespace PizzaAppWithJsonAndDAL.Ting
             }
         }
 
-        public ObservableCollection<PizzaPresenter> OpdaterVareKurvTekst()
+        public ObservableCollection<VarePresenter> OpdaterVareKurvTekst()
         {
-            ObservableCollection<PizzaPresenter> VareBeskrivelser = new ObservableCollection<PizzaPresenter>();
+            ObservableCollection<VarePresenter> VareBeskrivelser = new ObservableCollection<VarePresenter>();
             foreach (Varer item in Inventar)
             {
                 if (item is Pizza)
@@ -57,7 +57,7 @@ namespace PizzaAppWithJsonAndDAL.Ting
                     {
                         s += top.Navn + ", ";
                     }
-                    VareBeskrivelser.Add(new PizzaPresenter(item.VareKurvId, s));
+                    VareBeskrivelser.Add(new VarePresenter(item.VareKurvId, s));
                 }
             }
             return VareBeskrivelser;
