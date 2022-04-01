@@ -86,7 +86,7 @@ namespace PizzaAppWithJsonAndDAL.ViewModels
             UpdateAntalToppingsLabel();
         }
 
-        private void UpdateAntalToppingsLabel()
+        public void UpdateAntalToppingsLabel()
         {
             AntalToppings = $"{ToppingTæller}/4 mulige toppings"; 
         }
