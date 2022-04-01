@@ -22,6 +22,7 @@ namespace PizzaAppWithJsonAndDAL.ViewModels
         public ViewModelCustom(int pizzaIdToCustomize)
         {
             dal = new DAL.VarerDAL();
+            ToppingTæller = 0;
             ToppingListe = dal.GetAllToppings();
             BundListe = dal.GetAllBunde();
             SovsListe = dal.GetAllSovse();
@@ -66,6 +67,7 @@ namespace PizzaAppWithJsonAndDAL.ViewModels
             }
             if (pizzaToCustomize.PizzaTopping != null)
             {
+                ToppingTæller = pizzaToCustomize.PizzaTopping.Count;
                 foreach (Topping top in pizzaToCustomize.PizzaTopping)
                 {
                     foreach(ToppingPresenterCheck tpc in TextListeMedToppings)
@@ -77,6 +79,16 @@ namespace PizzaAppWithJsonAndDAL.ViewModels
                     }
                 }
             }
+            else
+            {
+                ToppingTæller = 0;
+            }
+            UpdateAntalToppingsLabel();
+        }
+
+        private void UpdateAntalToppingsLabel()
+        {
+            AntalToppings = $"{ToppingTæller}/4 mulige toppings"; 
         }
 
         public event PropertyChangedEventHandler? PropertyChanged;
@@ -101,7 +113,6 @@ namespace PizzaAppWithJsonAndDAL.ViewModels
             }
             TextListeMedToppings = temp;
         }
-
         void BundTilSelectionBox()
         {
             ObservableCollection<IngredientPresenter> temp = new ObservableCollection<IngredientPresenter>();
@@ -150,6 +161,8 @@ namespace PizzaAppWithJsonAndDAL.ViewModels
                 OnPropertyChanged(nameof(TextListeMedToppings));
             }
         }
+        public int ToppingTæller { get; set; }
+
         private ObservableCollection<IngredientPresenter> _textListeMedBunde;
         public ObservableCollection<IngredientPresenter> TextListeMedBunde
         {
@@ -200,5 +213,15 @@ namespace PizzaAppWithJsonAndDAL.ViewModels
             set { _ostSelectedItem = value; }
         }
 
+        private string _antalToppings;
+        public string AntalToppings
+        {
+            get { return _antalToppings; }
+            set
+            {
+                _antalToppings = value;
+                OnPropertyChanged(nameof(AntalToppings));
+            }
+        }
     }
 }

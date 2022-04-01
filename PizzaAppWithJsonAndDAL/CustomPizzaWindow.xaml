@@ -44,7 +44,7 @@
             </ComboBox.ItemTemplate>
         </ComboBox>
 
-        <TextBlock Margin="0,0,50,529" TextWrapping="Wrap" Text="Max antal toppings" FontSize="24" HorizontalAlignment="Right" Width="222" Height="32" VerticalAlignment="Bottom"/>
+        <TextBlock Margin="0,0,50,529" TextWrapping="Wrap" Text="{Binding AntalToppings}" FontSize="24" HorizontalAlignment="Right" Width="222" Height="32" VerticalAlignment="Bottom"/>
         <ListBox ItemsSource="{Binding TextListeMedToppings}" Margin="256,0,344,0" FontSize="18">
             <ListBox.ItemTemplate>
                 <DataTemplate>
@@ -53,7 +53,7 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        <Button Content="Læg i kurv" Margin="0,0,50,40" HorizontalAlignment="Right" Width="110" Height="30" VerticalAlignment="Bottom" FontSize="14"/>
+        <Button Content="Læg i kurv" Margin="0,0,50,40" HorizontalAlignment="Right" Width="110" Height="30" VerticalAlignment="Bottom" FontSize="14" Click="LægCustomizedPizzaIKurv"/>
 
 
     </Grid>

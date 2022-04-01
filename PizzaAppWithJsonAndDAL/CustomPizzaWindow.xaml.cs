@@ -41,5 +41,10 @@ namespace PizzaAppWithJsonAndDAL
         {
 
         }
+
+        private void LægCustomizedPizzaIKurv(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
