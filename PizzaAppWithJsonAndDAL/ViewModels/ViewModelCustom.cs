@@ -49,57 +49,57 @@ namespace PizzaAppWithJsonAndDAL.ViewModels
         }
         void ToppingTilSelectionMenu()
         {
-            ObservableCollection<PizzaPresenter> temp = new ObservableCollection<PizzaPresenter>();
+            ObservableCollection<IngredientPresenter> temp = new ObservableCollection<IngredientPresenter>();
             
             foreach (Topping topping in ToppingListe)
             {
                 string s = $"{topping.Navn} ({topping.Pris}).";
 
-                temp.Add(new PizzaPresenter(topping.Id, s));
+                temp.Add(new IngredientPresenter(topping.Id, s));
             }
             TextListeMedToppings = temp;
         }
 
         void BundTilSelectionBox()
         {
-            ObservableCollection<PizzaPresenter> temp = new ObservableCollection<PizzaPresenter>();
+            ObservableCollection<IngredientPresenter> temp = new ObservableCollection<IngredientPresenter>();
 
             foreach (Bund b in BundListe)
             {
                 string s = $"{b.Navn} ({b.Pris}).";
 
-                temp.Add(new PizzaPresenter(b.Id, s));
+                temp.Add(new IngredientPresenter(b.Id, s));
             }
             TextListeMedBunde = temp;
         }
         void SovsTilSelectionBox()
         {
-            ObservableCollection<PizzaPresenter> temp = new ObservableCollection<PizzaPresenter>();
+            ObservableCollection<IngredientPresenter> temp = new ObservableCollection<IngredientPresenter>();
 
             foreach (Sovs svs in SovsListe)
             {
                 string s = $"{svs.Navn} ({svs.Pris}).";
 
-                temp.Add(new PizzaPresenter(svs.Id, s));
+                temp.Add(new IngredientPresenter(svs.Id, s));
             }
             TextListeMedSovs = temp;
 
         }
         void OstTilSelectionBox()
         {
-            ObservableCollection<PizzaPresenter> temp = new ObservableCollection<PizzaPresenter>();
+            ObservableCollection<IngredientPresenter> temp = new ObservableCollection<IngredientPresenter>();
 
             foreach (Ost o in OstListe)
             {
                 string s = $"{o.Navn} ({o.Pris}).";
 
-                temp.Add(new PizzaPresenter(o.Id, s));
+                temp.Add(new IngredientPresenter(o.Id, s));
             }
             TextListeMedOst = temp;
         }
 
-        private ObservableCollection<PizzaPresenter> _listeMedToppings;
-        public ObservableCollection<PizzaPresenter> TextListeMedToppings
+        private ObservableCollection<IngredientPresenter> _listeMedToppings;
+        public ObservableCollection<IngredientPresenter> TextListeMedToppings
         {
             get { return _listeMedToppings; }
             set
@@ -108,8 +108,8 @@ namespace PizzaAppWithJsonAndDAL.ViewModels
                 OnPropertyChanged(nameof(TextListeMedToppings));
             }
         }
-        private ObservableCollection<PizzaPresenter> _textListeMedBunde;
-        public ObservableCollection<PizzaPresenter> TextListeMedBunde
+        private ObservableCollection<IngredientPresenter> _textListeMedBunde;
+        public ObservableCollection<IngredientPresenter> TextListeMedBunde
         {
             get { return _textListeMedBunde; }
             set { 
@@ -117,8 +117,8 @@ namespace PizzaAppWithJsonAndDAL.ViewModels
                 OnPropertyChanged(nameof(TextListeMedBunde));
             }
         }
-        private ObservableCollection<PizzaPresenter> _textListeMedSovs;
-        public ObservableCollection<PizzaPresenter> TextListeMedSovs
+        private ObservableCollection<IngredientPresenter> _textListeMedSovs;
+        public ObservableCollection<IngredientPresenter> TextListeMedSovs
         {
             get { return _textListeMedSovs; }
             set
@@ -127,8 +127,8 @@ namespace PizzaAppWithJsonAndDAL.ViewModels
                 OnPropertyChanged(nameof(TextListeMedSovs));
             }
         }
-        private ObservableCollection<PizzaPresenter> _textListeMedOst;
-        public ObservableCollection<PizzaPresenter> TextListeMedOst
+        private ObservableCollection<IngredientPresenter> _textListeMedOst;
+        public ObservableCollection<IngredientPresenter> TextListeMedOst
         {
             get { return _textListeMedOst; }
             set
