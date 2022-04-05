@@ -34,6 +34,8 @@ namespace PizzaAppWithJsonAndDAL
 
         private void CheckBoxZone_Checked(object sender, RoutedEventArgs e)
         {
+            CheckBox cb = sender as CheckBox;
+
             if(vm.ToppingTæller < 4)
             {
                 vm.ToppingTæller++;
@@ -41,7 +43,7 @@ namespace PizzaAppWithJsonAndDAL
             }
             else
             {
-                ((ToppingPresenterCheck)sender).Checked = false;
+                cb.IsChecked = false;
             }
 
         }
