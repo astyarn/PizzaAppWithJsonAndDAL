@@ -53,7 +53,6 @@ namespace PizzaAppWithJsonAndDAL.DAL
             File.WriteAllText("PizzariaDAL.json", data10);
         }
 
-        //More functionality to come ...
 
         public ObservableCollection<ViewModels.VarePresenter> FåPizzaBeskrivelseOgId()
         {

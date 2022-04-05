@@ -23,10 +23,14 @@ namespace PizzaAppWithJsonAndDAL
     public partial class CustomPizzaWindow : Window
     {
         ViewModelCustom vm;
+        public bool PizzaWasCustomized { get; set; }
+
+        internal Pizza CustomizedPizza { get; set; }
 
         public CustomPizzaWindow(int SelectedPizzaId)
         {
             InitializeComponent();
+            PizzaWasCustomized = true;
             vm = new ViewModelCustom(SelectedPizzaId);
 
             DataContext = vm;
@@ -40,10 +44,12 @@ namespace PizzaAppWithJsonAndDAL
             {
                 vm.ToppingTæller++;
                 vm.UpdateAntalToppingsLabel();
+                
             }
             else
             {
                 cb.IsChecked = false;
+                //cb.IsEnabled = false;
             }
 
         }
@@ -62,7 +68,9 @@ namespace PizzaAppWithJsonAndDAL
 
         private void LægCustomizedPizzaIKurv(object sender, RoutedEventArgs e)
         {
-
+            vm.pizzaToCustomize.Navn = $"*{vm.pizzaToCustomize.Navn}*";
+            CustomizedPizza = vm.pizzaToCustomize;
+            Close();
         }
     }
 }

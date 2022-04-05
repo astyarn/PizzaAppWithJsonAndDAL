@@ -112,6 +112,13 @@ namespace PizzaAppWithJsonAndDAL
             //Just push an int to the new window
             CustomPizzaWindow customPizzaWindow = new CustomPizzaWindow(vm.GetSelectedPizzaId());
             customPizzaWindow.ShowDialog();
+            if(customPizzaWindow.PizzaWasCustomized)
+            {
+                //Put customized pizza i Kurv
+                Pizza test = new Pizza();
+                test = customPizzaWindow.CustomizedPizza;
+                vm.LægPizzaIKurvFraCustomizering(test);
+            }
 
         }
     }

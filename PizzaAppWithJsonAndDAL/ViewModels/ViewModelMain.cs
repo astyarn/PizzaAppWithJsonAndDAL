@@ -40,6 +40,13 @@ namespace PizzaAppWithJsonAndDAL.ViewModels
             }
             SamletPrisAfKurvTilTekst();
         }
+        public void LægPizzaIKurvFraCustomizering(Varer iCustomPizza)
+        {
+            Varekurv.TilføjVare(iCustomPizza);
+            VarekurvBeskrivelser = Varekurv.OpdaterVareKurvTekst();
+            
+            SamletPrisAfKurvTilTekst();
+        }
 
         public void FjernVareFraKurvMedVareKurvId()
         {
