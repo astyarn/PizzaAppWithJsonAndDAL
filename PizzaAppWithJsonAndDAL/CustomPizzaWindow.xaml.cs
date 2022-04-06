@@ -49,7 +49,6 @@ namespace PizzaAppWithJsonAndDAL
             else
             {
                 cb.IsChecked = false;
-                //cb.IsEnabled = false;
             }
 
         }
@@ -72,6 +71,7 @@ namespace PizzaAppWithJsonAndDAL
             vm.SkiftSovsPåPizza();
             vm.SkiftOstPåPizza();
             vm.SkiftToppingPåPizza();
+            vm.SætSizePåPizza();            //sætter kun pris på pizza i kurv, opdaterer ikke i customWindow
             vm.pizzaToCustomize.BeregnPris();
             vm.pizzaToCustomize.Navn = $"*{vm.pizzaToCustomize.Navn}*";
             CustomizedPizza = vm.pizzaToCustomize;
@@ -80,7 +80,13 @@ namespace PizzaAppWithJsonAndDAL
 
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            vm.ToppingTilSelectionMenu();
+            vm.BundTilSelectionBox();
+            vm.SovsTilSelectionBox();
+            vm.OstTilSelectionBox();
 
+            //Erstattes med en funktion der vælger det samme item igen, i dropdown, efter størrelsesændring
+            vm.InitializeSelectionsOfPizzaParts();      
         }
     }
 }

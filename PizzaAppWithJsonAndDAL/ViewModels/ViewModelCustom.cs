@@ -95,50 +95,50 @@ namespace PizzaAppWithJsonAndDAL.ViewModels
             }
         }
 
-        void ToppingTilSelectionMenu()
+        public void ToppingTilSelectionMenu()
         {
             ObservableCollection<ToppingPresenterCheck> temp = new ObservableCollection<ToppingPresenterCheck>();
 
             foreach (Topping topping in ToppingListe)
             {
-                string s = $"{topping.Navn} ({topping.Pris}).";
+                string s = $"{topping.Navn} ({topping.Pris * CustomSizeSelection.menuID}).";
 
                 temp.Add(new ToppingPresenterCheck(topping.Id, s));
             }
             TextListeMedToppings = temp;
         }
-        void BundTilSelectionBox()
+        public void BundTilSelectionBox()
         {
             ObservableCollection<IngredientPresenter> temp = new ObservableCollection<IngredientPresenter>();
 
             foreach (Bund b in BundListe)
             {
-                string s = $"{b.Navn} ({b.Pris}).";
+                string s = $"{b.Navn} ({b.Pris * CustomSizeSelection.menuID}).";
 
                 temp.Add(new IngredientPresenter(b.Id, s));
             }
             TextListeMedBunde = temp;
         }
-        void SovsTilSelectionBox()
+        public void SovsTilSelectionBox()
         {
             ObservableCollection<IngredientPresenter> temp = new ObservableCollection<IngredientPresenter>();
 
             foreach (Sovs svs in SovsListe)
             {
-                string s = $"{svs.Navn} ({svs.Pris}).";
+                string s = $"{svs.Navn} ({svs.Pris * CustomSizeSelection.menuID}).";
 
                 temp.Add(new IngredientPresenter(svs.Id, s));
             }
             TextListeMedSovs = temp;
 
         }
-        void OstTilSelectionBox()
+        public void OstTilSelectionBox()
         {
             ObservableCollection<IngredientPresenter> temp = new ObservableCollection<IngredientPresenter>();
 
             foreach (Ost o in OstListe)
             {
-                string s = $"{o.Navn} ({o.Pris}).";
+                string s = $"{o.Navn} ({o.Pris * CustomSizeSelection.menuID}).";
 
                 temp.Add(new IngredientPresenter(o.Id, s));
             }
@@ -170,19 +170,19 @@ namespace PizzaAppWithJsonAndDAL.ViewModels
             {
                 CustomSizeSelection = CustomSizeOptions[1];
             }
-            //CustomSizeSelection = iSize; //Skal sættes til at få input fra main
-
+            pizzaToCustomize = dal.GetPizzaById(pizzaIdToCustomize);
+            //Laver data til at vise i comboks og listboks med checkboks
             ToppingTilSelectionMenu();
             BundTilSelectionBox();
             SovsTilSelectionBox();
             OstTilSelectionBox();
 
-            pizzaToCustomize = dal.GetPizzaById(pizzaIdToCustomize);
+            
             InitializeSelectionsOfPizzaParts();
 
         }
 
-        private void InitializeSelectionsOfPizzaParts()
+        public void InitializeSelectionsOfPizzaParts()
         {
             foreach (IngredientPresenter bt in TextListeMedBunde)
             {
@@ -343,6 +343,17 @@ namespace PizzaAppWithJsonAndDAL.ViewModels
             dal.SkiftStørrelsePåPizza(iSize);
         }
 
+        public void SætSizePåPizza()
+        {
+            if (CustomSizeSelection.menuID == 2)
+            {
+                pizzaToCustomize.Size = Varer.size.Stor;
+            }
+            else
+            {
+                pizzaToCustomize.Size = Varer.size.Normal;
+            }
+        }
 
 
         public event PropertyChangedEventHandler? PropertyChanged;
