@@ -68,6 +68,10 @@ namespace PizzaAppWithJsonAndDAL
 
         private void LægCustomizedPizzaIKurv(object sender, RoutedEventArgs e)
         {
+            vm.SkiftBundPåPizza();
+            vm.SkiftSovsPåPizza();
+            vm.SkiftOstPåPizza();
+            vm.pizzaToCustomize.BeregnPris();
             vm.pizzaToCustomize.Navn = $"*{vm.pizzaToCustomize.Navn}*";
             CustomizedPizza = vm.pizzaToCustomize;
             Close();

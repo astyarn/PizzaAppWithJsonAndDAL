@@ -162,7 +162,6 @@ namespace PizzaAppWithJsonAndDAL.ViewModels
             pizzaToCustomize = dal.GetPizzaById(pizzaIdToCustomize);
             InitializeSelectionsOfPizzaParts();
 
-
         }
 
         private void InitializeSelectionsOfPizzaParts()
@@ -211,6 +210,60 @@ namespace PizzaAppWithJsonAndDAL.ViewModels
             }
             UpdateAntalToppingsLabel();
         }
+
+        public void SkiftBundPåPizza()
+        {
+            if (pizzaToCustomize.Bund.Id != BundeSelectedItem.menuID)
+            {
+                foreach (Bund b in BundListe)
+                {
+                    if (BundeSelectedItem.menuID == b.Id)
+                    {
+                        pizzaToCustomize.Bund.Id = b.Id;
+                        pizzaToCustomize.Bund.Navn = b.Navn;
+                        pizzaToCustomize.Bund.Pris = b.Pris;
+                        break;
+                    }
+                }
+            }
+        }
+        public void SkiftSovsPåPizza()
+        {
+            if (pizzaToCustomize.Sovs.Id != SovsSelectedItem.menuID)
+            {
+                foreach (Sovs s in SovsListe)
+                {
+                    if (SovsSelectedItem.menuID == s.Id)
+                    {
+                        pizzaToCustomize.Sovs.Id = s.Id;
+                        pizzaToCustomize.Sovs.Navn = s.Navn;
+                        pizzaToCustomize.Sovs.Pris = s.Pris;
+                        break;
+                    }
+                }
+            }
+        }
+        public void SkiftOstPåPizza()
+        {
+            if (pizzaToCustomize.Ost.Id != OstSelectedItem.menuID)
+            {
+                foreach (Ost o in OstListe)
+                {
+                    if (OstSelectedItem.menuID == o.Id)
+                    {
+                        pizzaToCustomize.Ost.Id = o.Id;
+                        pizzaToCustomize.Ost.Navn = o.Navn;
+                        pizzaToCustomize.Ost.Pris = o.Pris;
+                        break;
+                    }
+                }
+            }
+        }
+        public void SkiftToppingPåPizza()
+        {
+            //Add or remove toppings as they are selected or unselected
+        }
+
 
         public void UpdateAntalToppingsLabel()
         {
