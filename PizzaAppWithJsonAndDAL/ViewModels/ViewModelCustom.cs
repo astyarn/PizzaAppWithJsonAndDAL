@@ -18,6 +18,9 @@ namespace PizzaAppWithJsonAndDAL.ViewModels
         ObservableCollection<Sovs> SovsListe;
         ObservableCollection<Ost> OstListe;
 
+        public ObservableCollection<VarePresenter> CustomSizeOptions { get; set; }
+        public VarePresenter CustomSizeSelection { get; set; }
+
         private ObservableCollection<ToppingPresenterCheck> _listeMedToppings;
         public ObservableCollection<ToppingPresenterCheck> TextListeMedToppings
         {
@@ -143,9 +146,10 @@ namespace PizzaAppWithJsonAndDAL.ViewModels
         }
 
         public Pizza pizzaToCustomize { get; set; }
+        
 
         //Pizza pizzaToCustomize;
-        public ViewModelCustom(int pizzaIdToCustomize)
+        public ViewModelCustom(int pizzaIdToCustomize, VarePresenter iSize)
         {
             dal = new DAL.VarerDAL();
             ToppingTæller = 0;
@@ -153,6 +157,20 @@ namespace PizzaAppWithJsonAndDAL.ViewModels
             BundListe = dal.GetAllBunde();
             SovsListe = dal.GetAllSovse();
             OstListe = dal.GetAllOste();
+
+            //Opretter størrelseslisten til varerne baseret på size enum i Varer klassen
+            CustomSizeOptions = new ObservableCollection<VarePresenter>();
+            CustomSizeOptions.Add(new VarePresenter(((int)Varer.size.Normal), Varer.size.Normal.ToString()));
+            CustomSizeOptions.Add(new VarePresenter(((int)Varer.size.Stor), Varer.size.Stor.ToString()));
+            if(iSize.menuID == CustomSizeOptions[0].menuID)
+            {
+                CustomSizeSelection = CustomSizeOptions[0];
+            }
+            else
+            {
+                CustomSizeSelection = CustomSizeOptions[1];
+            }
+            //CustomSizeSelection = iSize; //Skal sættes til at få input fra main
 
             ToppingTilSelectionMenu();
             BundTilSelectionBox();
@@ -311,7 +329,19 @@ namespace PizzaAppWithJsonAndDAL.ViewModels
             AntalToppings = $"{ToppingTæller}/4 mulige toppings"; 
         }
 
-
+        public void ChangeVareSizeCustom()
+        {
+            Varer.size iSize;
+            if (CustomSizeSelection.menuID == 2)
+            {
+                iSize = Varer.size.Stor;
+            }
+            else
+            {
+                iSize = Varer.size.Normal;
+            }
+            dal.SkiftStørrelsePåPizza(iSize);
+        }
 
 
 

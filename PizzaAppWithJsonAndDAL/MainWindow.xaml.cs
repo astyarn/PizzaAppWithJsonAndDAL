@@ -110,9 +110,9 @@ namespace PizzaAppWithJsonAndDAL
             //Open CustomPizzawindow and send the current selected Pizza to it!
             //Do this with ID of selected pizza
             //Just push an int to the new window
-            CustomPizzaWindow customPizzaWindow = new CustomPizzaWindow(vm.GetSelectedPizzaId());
+            CustomPizzaWindow customPizzaWindow = new CustomPizzaWindow(vm.GetSelectedPizzaId(), vm.MainSizeSelection);
             customPizzaWindow.ShowDialog();
-            if(customPizzaWindow.PizzaWasCustomized)
+            if(customPizzaWindow.PizzaWasCustomized && customPizzaWindow.CustomizedPizza != null)
             {
                 //Put customized pizza i Kurv
                 Pizza test = new Pizza();

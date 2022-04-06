@@ -27,11 +27,11 @@ namespace PizzaAppWithJsonAndDAL
 
         internal Pizza CustomizedPizza { get; set; }
 
-        public CustomPizzaWindow(int SelectedPizzaId)
+        internal CustomPizzaWindow(int SelectedPizzaId, VarePresenter iSize)
         {
             InitializeComponent();
             PizzaWasCustomized = true;
-            vm = new ViewModelCustom(SelectedPizzaId);
+            vm = new ViewModelCustom(SelectedPizzaId, iSize);
 
             DataContext = vm;
         }
@@ -76,6 +76,11 @@ namespace PizzaAppWithJsonAndDAL
             vm.pizzaToCustomize.Navn = $"*{vm.pizzaToCustomize.Navn}*";
             CustomizedPizza = vm.pizzaToCustomize;
             Close();
+        }
+
+        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }

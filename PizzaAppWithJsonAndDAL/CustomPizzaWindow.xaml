@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="CustomPizzaWindow" Height="600" Width="1000">
     <Grid>
-        <ComboBox ItemsSource="{Binding}" HorizontalAlignment="Left" Margin="25,35,0,0" VerticalAlignment="Top" Width="180" FontSize="16" Height="40" >
+        <ComboBox ItemsSource="{Binding CustomSizeOptions}" SelectedItem="{Binding CustomSizeSelection}" HorizontalAlignment="Left" Margin="25,35,0,0" VerticalAlignment="Top" Width="180" FontSize="16" Height="40" SelectionChanged="ComboBox_SelectionChanged" >
             <ComboBox.ItemTemplate>
                 <DataTemplate>
 
