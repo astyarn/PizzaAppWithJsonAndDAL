@@ -261,12 +261,26 @@ namespace PizzaAppWithJsonAndDAL.ViewModels
         }
         public void SkiftToppingPåPizza()
         {
-            //Add or remove toppings as they are selected or unselected
+            //Go through the list of toppings and add/remove checked/unchecked toppings
             foreach(ToppingPresenterCheck tpc in TextListeMedToppings)
             {
+                //controls wether a uncheck topping is on the pizza and removes it
+                if (!tpc.Checked)
+                {
+                    foreach (Topping pTop in pizzaToCustomize.PizzaTopping)
+                    {
+                        if (tpc.menuID == pTop.Id)
+                        {
+                            pizzaToCustomize.PizzaTopping.Remove(pTop);
+                            break;  //needed otherwise code breaks since collection is modified during a foreach
+                        }
+                    }
+                }
+
+                //checks if a checked topping has been added and, if not, adds it
                 if(tpc.Checked)
                 {
-                    int ctrl = 0;
+                    int ctrl = 0;   //stays 0 if the topping isnt already on the pizza
                     foreach(Topping pTop in pizzaToCustomize.PizzaTopping)
                     {
                         if(tpc.menuID == pTop.Id)
@@ -275,6 +289,7 @@ namespace PizzaAppWithJsonAndDAL.ViewModels
                         }
                     }
 
+                    //Adds a topping to the pizza based on the selected ID
                     if (ctrl == 0)
                     {
                         foreach (Topping top in ToppingListe)
@@ -286,7 +301,7 @@ namespace PizzaAppWithJsonAndDAL.ViewModels
                             }
                         }
                     }
-                }    
+                }
             }
         }
 
