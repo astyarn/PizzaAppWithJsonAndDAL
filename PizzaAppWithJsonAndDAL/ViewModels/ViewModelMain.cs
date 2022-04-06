@@ -22,6 +22,12 @@ namespace PizzaAppWithJsonAndDAL.ViewModels
             VarekurvBeskrivelser = new ObservableCollection<VarePresenter>();
             
             MenuPizzaBeskrivelser = dal.FåPizzaBeskrivelseOgId();
+
+            //Opretter størrelseslisten til varerne baseret på size enum i Varer klassen
+            MainSizeOptions = new ObservableCollection<VarePresenter>();
+            MainSizeOptions.Add(new VarePresenter(((int)Varer.size.Normal), Varer.size.Normal.ToString()));
+            MainSizeOptions.Add(new VarePresenter(((int)Varer.size.Stor), Varer.size.Stor.ToString()));
+            MainSizeSelection = MainSizeOptions[0]; //sætter normal til at være preselected (udløser stadig et change event!!!)
         }
         //Metoder
 
@@ -63,6 +69,24 @@ namespace PizzaAppWithJsonAndDAL.ViewModels
             string s = $"Samlet ordre pris: {Varekurv.UdregnKurvSamletPris()} Kr.";
             TextSamletPrisAfKurv = s;
         }
+
+        public void ChangeVareSize()
+        {
+            Varer.size iSize;
+            if(MainSizeSelection.menuID == 2)
+            {
+                iSize = Varer.size.Stor;
+            }
+            else
+            {
+                iSize = Varer.size.Normal;
+            }
+            dal.SkiftStørrelsePåPizza(iSize);
+
+            MenuPizzaBeskrivelser = dal.FåPizzaBeskrivelseOgId();   //Opdater MenuListen
+        }
+
+
 
         //Properties til sammenknytning med xaml
 
@@ -113,5 +137,9 @@ namespace PizzaAppWithJsonAndDAL.ViewModels
             }
         }
 
+        //{Binding MainSizeOptions}" SelectedItem="{Binding MainSizeSelection}
+        public ObservableCollection<VarePresenter> MainSizeOptions { get; set; }
+
+        public VarePresenter MainSizeSelection { get; set; }
     }
 }

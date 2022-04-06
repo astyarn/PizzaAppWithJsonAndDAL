@@ -124,5 +124,14 @@ namespace PizzaAppWithJsonAndDAL.DAL
 
             return nyPizza;
         }
+
+        public void SkiftStørrelsePåPizza(Varer.size iSize)
+        {
+            foreach (Pizza piz in PizzaMenu)
+            {
+                piz.Size = iSize;
+                piz.BeregnPris();
+            }
+        }
     }
 }

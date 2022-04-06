@@ -108,7 +108,7 @@ namespace PizzaAppWithJsonAndDAL
         private void CustomizeSelctedPizza(object sender, RoutedEventArgs e)
         {
             //Open CustomPizzawindow and send the current selected Pizza to it!
-            //DO this with ID of selected pizza
+            //Do this with ID of selected pizza
             //Just push an int to the new window
             CustomPizzaWindow customPizzaWindow = new CustomPizzaWindow(vm.GetSelectedPizzaId());
             customPizzaWindow.ShowDialog();
@@ -120,6 +120,11 @@ namespace PizzaAppWithJsonAndDAL
                 vm.LægPizzaIKurvFraCustomizering(test);
             }
 
+        }
+
+        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            vm.ChangeVareSize();
         }
     }
 }
