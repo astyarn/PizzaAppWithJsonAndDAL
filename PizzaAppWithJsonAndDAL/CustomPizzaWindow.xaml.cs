@@ -71,6 +71,7 @@ namespace PizzaAppWithJsonAndDAL
             vm.SkiftBundPåPizza();
             vm.SkiftSovsPåPizza();
             vm.SkiftOstPåPizza();
+            vm.SkiftToppingPåPizza();
             vm.pizzaToCustomize.BeregnPris();
             vm.pizzaToCustomize.Navn = $"*{vm.pizzaToCustomize.Navn}*";
             CustomizedPizza = vm.pizzaToCustomize;

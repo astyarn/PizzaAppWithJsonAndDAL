@@ -262,6 +262,32 @@ namespace PizzaAppWithJsonAndDAL.ViewModels
         public void SkiftToppingPåPizza()
         {
             //Add or remove toppings as they are selected or unselected
+            foreach(ToppingPresenterCheck tpc in TextListeMedToppings)
+            {
+                if(tpc.Checked)
+                {
+                    int ctrl = 0;
+                    foreach(Topping pTop in pizzaToCustomize.PizzaTopping)
+                    {
+                        if(tpc.menuID == pTop.Id)
+                        {
+                            ctrl++;
+                        }
+                    }
+
+                    if (ctrl == 0)
+                    {
+                        foreach (Topping top in ToppingListe)
+                        {
+                            if (tpc.menuID == top.Id)
+                            {
+                                Topping nyTop = new Topping(top.Id, top.Navn, top.Pris);
+                                pizzaToCustomize.PizzaTopping.Add(nyTop);
+                            }
+                        }
+                    }
+                }    
+            }
         }
 
 
