@@ -78,15 +78,10 @@ namespace PizzaAppWithJsonAndDAL
             Close();
         }
 
-        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void Size_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            vm.ToppingTilSelectionMenu();
-            vm.BundTilSelectionBox();
-            vm.SovsTilSelectionBox();
-            vm.OstTilSelectionBox();
+            vm.OpdaterTekstPåComboboxVedSizeSkift();
 
-            //Erstattes med en funktion der vælger det samme item igen, i dropdown, efter størrelsesændring
-            vm.InitializeSelectionsOfPizzaParts();      
         }
     }
 }

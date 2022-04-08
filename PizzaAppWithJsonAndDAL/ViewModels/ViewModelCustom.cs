@@ -47,7 +47,8 @@ namespace PizzaAppWithJsonAndDAL.ViewModels
         public IngredientPresenter BundeSelectedItem
         {
             get { return _bundeSelectedItem; }
-            set { _bundeSelectedItem = value; }
+            set { _bundeSelectedItem = value;
+                OnPropertyChanged(nameof(BundeSelectedItem)); }
         }
 
         private ObservableCollection<IngredientPresenter> _textListeMedSovs;
@@ -64,7 +65,9 @@ namespace PizzaAppWithJsonAndDAL.ViewModels
         public IngredientPresenter SovsSelectedItem
         {
             get { return _sovsSelectedItem; }
-            set { _sovsSelectedItem = value; }
+            set { _sovsSelectedItem = value;
+                OnPropertyChanged(nameof(SovsSelectedItem));
+            }
         }
 
         private ObservableCollection<IngredientPresenter> _textListeMedOst;
@@ -81,7 +84,9 @@ namespace PizzaAppWithJsonAndDAL.ViewModels
         public IngredientPresenter OstSelectedItem
         {
             get { return _ostSelectedItem; }
-            set { _ostSelectedItem = value; }
+            set { _ostSelectedItem = value;
+                OnPropertyChanged(nameof(OstSelectedItem));
+            }
         }
 
         private string _antalToppings;
@@ -329,19 +334,19 @@ namespace PizzaAppWithJsonAndDAL.ViewModels
             AntalToppings = $"{ToppingTæller}/4 mulige toppings"; 
         }
 
-        public void ChangeVareSizeCustom()
-        {
-            Varer.size iSize;
-            if (CustomSizeSelection.menuID == 2)
-            {
-                iSize = Varer.size.Stor;
-            }
-            else
-            {
-                iSize = Varer.size.Normal;
-            }
-            dal.SkiftStørrelsePåPizza(iSize);
-        }
+        //public void ChangeVareSizeCustom()
+        //{
+        //    Varer.size iSize;
+        //    if (CustomSizeSelection.menuID == 2)
+        //    {
+        //        iSize = Varer.size.Stor;
+        //    }
+        //    else
+        //    {
+        //        iSize = Varer.size.Normal;
+        //    }
+        //    dal.SkiftStørrelsePåPizza(iSize);
+        //}
 
         public void SætSizePåPizza()
         {
@@ -355,6 +360,41 @@ namespace PizzaAppWithJsonAndDAL.ViewModels
             }
         }
 
+        public void OpdaterTekstPåComboboxVedSizeSkift()
+        {
+            int tempBundId = BundeSelectedItem.menuID;
+            int tempSovsId = SovsSelectedItem.menuID;
+            int tempOstId = OstSelectedItem.menuID;
+            ToppingTilSelectionMenu();
+            BundTilSelectionBox();
+            SovsTilSelectionBox();
+            OstTilSelectionBox();
+
+            foreach (IngredientPresenter ip in TextListeMedBunde)
+            {
+                if (ip.menuID == tempBundId)
+                {
+                    BundeSelectedItem = ip;
+                    break;
+                }
+            }
+            foreach (IngredientPresenter ip in TextListeMedSovs)
+            {
+                if (ip.menuID == tempSovsId)
+                {
+                    SovsSelectedItem = ip;
+                    break;
+                }
+            }
+            foreach (IngredientPresenter ip in TextListeMedOst)
+            {
+                if (ip.menuID == tempOstId)
+                {
+                    OstSelectedItem = ip;
+                    break;
+                }
+            }
+        }
 
         public event PropertyChangedEventHandler? PropertyChanged;
 
