@@ -41,7 +41,7 @@ namespace PizzaAppWithJsonAndDAL.ViewModels
             if (SelectionMenu != null)
             {
                 int vareId = SelectionMenu.menuID;
-                Varekurv.TilføjVare(dal.GetPizzaById(vareId));
+                Varekurv.TilføjVare(dal.GetVareById(vareId));
                 VarekurvBeskrivelser = Varekurv.OpdaterVareKurvTekst();
             }
             SamletPrisAfKurvTilTekst();

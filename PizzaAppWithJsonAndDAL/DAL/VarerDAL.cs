@@ -21,10 +21,21 @@ namespace PizzaAppWithJsonAndDAL.DAL
         ObservableCollection<Sovs> SovsListe = new ObservableCollection<Sovs>();
         ObservableCollection<Ost> OstListe = new ObservableCollection<Ost>();
 
+        public ObservableCollection<Varer> AlleVarer { get; set; }
+
 
         internal VarerDAL()
         {
             LoadDataFromJson();
+            AlleVarer = new ObservableCollection<Varer>();
+            foreach (Pizza item in PizzaMenu)
+            {
+                AlleVarer.Add(item);
+            }
+            foreach (Drikkevare item in DrikkevarerMenu)
+            {
+                AlleVarer.Add(item);
+            }
         }
 
         private void LoadDataFromJson()
@@ -61,7 +72,7 @@ namespace PizzaAppWithJsonAndDAL.DAL
         public ObservableCollection<ViewModels.VarePresenter> FåPizzaBeskrivelseOgId()
         {
             ObservableCollection<ViewModels.VarePresenter> temp =  new ObservableCollection<ViewModels.VarePresenter>();
-            foreach (Pizza item in PizzaMenu)
+            /*foreach (Pizza item in PizzaMenu)
             {
                 string s = $"{item.Navn} ({item.Size}) {item.Pris} kr. indeholder: " +
                            $"{item.Bund.Navn}, {item.Sovs.Navn}, {item.Ost.Navn}, ";
@@ -75,6 +86,25 @@ namespace PizzaAppWithJsonAndDAL.DAL
             {
                 string t = $"{item.Navn} ({item.Size}) {item.Pris} kr.";
                 temp.Add(new ViewModels.VarePresenter(item.Id, t));
+            }*/
+            foreach (Varer item in AlleVarer)
+            {
+                if(item is Pizza)
+                { 
+                    string s = $"{item.Navn} ({item.Size}) {item.Pris} kr. indeholder: " +
+                               $"{(item as Pizza).Bund.Navn}, {(item as Pizza).Sovs.Navn}, {(item as Pizza).Ost.Navn}, ";
+                    foreach (Ting.Topping top in (item as Pizza).PizzaTopping)
+                    {
+                        s += top.Navn + ", ";
+                    }
+                    temp.Add(new ViewModels.VarePresenter(item.Id, s));
+                }
+
+                if (item is Drikkevare)
+                {
+                    string t = $"{item.Navn} ({item.Size}) {item.Pris} kr.";
+                    temp.Add(new ViewModels.VarePresenter(item.Id, t));
+                }
             }
             return temp;
         }
@@ -99,39 +129,61 @@ namespace PizzaAppWithJsonAndDAL.DAL
         {
             return OstListe;
         }
-
-        public Pizza GetPizzaById(int id)
+        /// <summary>
+        /// Method to get a Varer from the DAL by using an ID
+        /// </summary>
+        /// <param name="id">Id of the Varer to copy out from the DAL</param>
+        /// <returns>DeepCopy of the Varer identified with id value</returns>
+        public Varer GetVareById(int id)
         {
-            Pizza pizzaToCopy = null;
-            foreach (Pizza item in PizzaMenu)
+            Varer tempObj = null;
+            foreach(Varer item in AlleVarer)
             {
-                if (item.Id == id)
+                if(item.Id == id)
                 {
-                    pizzaToCopy = item;
+                    tempObj = item;
+                    break;
                 }
             }
-            if(pizzaToCopy == null)
+            if (tempObj is Pizza)
             {
-                return null;
+                Pizza pizzaToCopy = null;
+                foreach (Pizza item in PizzaMenu)
+                {
+                    if (item.Id == id)
+                    {
+                        pizzaToCopy = item;
+                    }
+                }
+                if (pizzaToCopy == null)
+                {
+                    return null;
+                }
+
+                Pizza nyPizza = new Pizza();
+
+                nyPizza.Id = pizzaToCopy.Id;
+                nyPizza.Navn = pizzaToCopy.Navn;
+                nyPizza.Size = pizzaToCopy.Size;
+                nyPizza.Bund = new Bund(pizzaToCopy.Bund.Id, pizzaToCopy.Bund.Navn, pizzaToCopy.Bund.Pris);
+                nyPizza.Sovs = new Sovs(pizzaToCopy.Sovs.Id, pizzaToCopy.Sovs.Navn, pizzaToCopy.Sovs.Pris);
+                nyPizza.Ost = new Ost(pizzaToCopy.Ost.Id, pizzaToCopy.Ost.Navn, pizzaToCopy.Ost.Pris);
+                nyPizza.PizzaTopping = new ObservableCollection<Topping>();
+                foreach (Topping top in pizzaToCopy.PizzaTopping)
+                {
+                    nyPizza.PizzaTopping.Add(new Topping(top.Id, top.Navn, top.Pris));
+                }
+
+                nyPizza.Pris = pizzaToCopy.Pris;    //Evt erstattes af beregnPris metode fra Pizza
+
+                return nyPizza;
+            }
+            if(tempObj is Drikkevare)
+            {
+                //DeepCopy tempObj as a Drikkevare
             }
 
-            Pizza nyPizza = new Pizza();
-
-            nyPizza.Id = pizzaToCopy.Id;
-            nyPizza.Navn = pizzaToCopy.Navn;
-            nyPizza.Size = pizzaToCopy.Size;
-            nyPizza.Bund = new Bund(pizzaToCopy.Bund.Id, pizzaToCopy.Bund.Navn, pizzaToCopy.Bund.Pris);
-            nyPizza.Sovs = new Sovs(pizzaToCopy.Sovs.Id, pizzaToCopy.Sovs.Navn, pizzaToCopy.Sovs.Pris);
-            nyPizza.Ost = new Ost(pizzaToCopy.Ost.Id, pizzaToCopy.Ost.Navn, pizzaToCopy.Ost.Pris);
-            nyPizza.PizzaTopping = new ObservableCollection<Topping>();
-            foreach (Topping top in pizzaToCopy.PizzaTopping)
-            {
-                nyPizza.PizzaTopping.Add(new Topping(top.Id, top.Navn, top.Pris));
-            }
-
-            nyPizza.Pris = pizzaToCopy.Pris;    //Evt erstattes af beregnPris metode fra Pizza
-
-            return nyPizza;
+            return null; 
         }
 
         public void SkiftStørrelsePåPizza(Varer.size iSize)
