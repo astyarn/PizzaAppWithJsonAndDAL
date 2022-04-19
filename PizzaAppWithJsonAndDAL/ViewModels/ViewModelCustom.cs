@@ -175,7 +175,7 @@ namespace PizzaAppWithJsonAndDAL.ViewModels
             {
                 CustomSizeSelection = CustomSizeOptions[1];
             }
-            pizzaToCustomize = dal.GetVareById(pizzaIdToCustomize);
+            pizzaToCustomize = (Pizza)dal.GetVareById(pizzaIdToCustomize);
             //Laver data til at vise i comboks og listboks med checkboks
             ToppingTilSelectionMenu();
             BundTilSelectionBox();

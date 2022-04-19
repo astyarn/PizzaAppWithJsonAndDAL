@@ -136,6 +136,7 @@ namespace PizzaAppWithJsonAndDAL.DAL
         /// <returns>DeepCopy of the Varer identified with id value</returns>
         public Varer GetVareById(int id)
         {
+            //Find out if the Id corresponds to a Varer in AlleVarer.
             Varer tempObj = null;
             foreach(Varer item in AlleVarer)
             {
@@ -145,9 +146,11 @@ namespace PizzaAppWithJsonAndDAL.DAL
                     break;
                 }
             }
+            //Determine if the found Varer object is a Pizza or Drikkevare type
+            //and perform a deepcopy based on that.
             if (tempObj is Pizza)
             {
-                Pizza pizzaToCopy = null;
+                /*Pizza pizzaToCopy = null;
                 foreach (Pizza item in PizzaMenu)
                 {
                     if (item.Id == id)
@@ -158,8 +161,8 @@ namespace PizzaAppWithJsonAndDAL.DAL
                 if (pizzaToCopy == null)
                 {
                     return null;
-                }
-
+                }*/
+                Pizza pizzaToCopy = tempObj as Pizza;
                 Pizza nyPizza = new Pizza();
 
                 nyPizza.Id = pizzaToCopy.Id;
@@ -178,12 +181,24 @@ namespace PizzaAppWithJsonAndDAL.DAL
 
                 return nyPizza;
             }
-            if(tempObj is Drikkevare)
+            else if (tempObj is Drikkevare)
             {
                 //DeepCopy tempObj as a Drikkevare
-            }
+                Drikkevare drikkevareToCopy = tempObj as Drikkevare;
+                Drikkevare nyDrikkevare = new Drikkevare();
+                nyDrikkevare.Id = drikkevareToCopy.Id;
+                nyDrikkevare.Navn = drikkevareToCopy.Navn;
+                nyDrikkevare.OriginalPris = drikkevareToCopy.OriginalPris;
+                nyDrikkevare.Size = drikkevareToCopy.Size;
+                nyDrikkevare.Pris = drikkevareToCopy.Pris;
 
-            return null; 
+                return nyDrikkevare;
+            }
+            else
+            {
+
+                return null;
+            }
         }
 
         public void SkiftStørrelsePåPizza(Varer.size iSize)

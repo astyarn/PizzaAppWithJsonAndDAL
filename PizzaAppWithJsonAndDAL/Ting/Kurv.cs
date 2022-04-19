@@ -59,6 +59,11 @@ namespace PizzaAppWithJsonAndDAL.Ting
                     }
                     VareBeskrivelser.Add(new VarePresenter(item.VareKurvId, s));
                 }
+                if (item is Drikkevare)
+                {
+                    string t = $"{item.Navn} ({item.Size}) {item.Pris} kr.";
+                    VareBeskrivelser.Add(new ViewModels.VarePresenter(item.Id, t));
+                }
             }
             return VareBeskrivelser;
         }
