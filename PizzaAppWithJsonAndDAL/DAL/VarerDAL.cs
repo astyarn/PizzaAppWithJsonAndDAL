@@ -15,6 +15,7 @@ namespace PizzaAppWithJsonAndDAL.DAL
     {
         //ObservableCollection<Pizza> PizzaMenu = new ObservableCollection<Pizza>();
         public ObservableCollection<Pizza> PizzaMenu { get; set; }
+        public ObservableCollection<Drikkevare> DrikkevarerMenu { get; set; }
         ObservableCollection<Topping> ToppingListe = new ObservableCollection<Topping>();
         ObservableCollection<Bund> BundListe = new ObservableCollection<Bund>();
         ObservableCollection<Sovs> SovsListe = new ObservableCollection<Sovs>();
@@ -36,6 +37,7 @@ namespace PizzaAppWithJsonAndDAL.DAL
             var json5 = File.ReadAllText("Json/toppings.json");
 
             var json3 = File.ReadAllText("Json/pizza.json");
+            var json6 = File.ReadAllText("Json/drikkevarer.json");
             BundListe = JsonConvert.DeserializeObject<ObservableCollection<Bund>>(json1);
             OstListe = JsonConvert.DeserializeObject<ObservableCollection<Ost>>(json2);
             
@@ -43,6 +45,8 @@ namespace PizzaAppWithJsonAndDAL.DAL
             ToppingListe = JsonConvert.DeserializeObject<ObservableCollection<Topping>>(json5);
 
             PizzaMenu = JsonConvert.DeserializeObject<ObservableCollection<Pizza>>(json3);
+            DrikkevarerMenu = JsonConvert.DeserializeObject<ObservableCollection<Drikkevare>>(json6);
+
             //Debug.WriteLine($"Der var {PizzaMenu.Count} pizzaer");
         }
 
@@ -66,6 +70,11 @@ namespace PizzaAppWithJsonAndDAL.DAL
                     s += top.Navn + ", ";
                 }
                 temp.Add(new ViewModels.VarePresenter(item.Id, s));
+            }
+            foreach (Drikkevare item in DrikkevarerMenu)
+            {
+                string t = $"{item.Navn} ({item.Size}) {item.Pris} kr.";
+                temp.Add(new ViewModels.VarePresenter(item.Id, t));
             }
             return temp;
         }
@@ -131,6 +140,12 @@ namespace PizzaAppWithJsonAndDAL.DAL
             {
                 piz.Size = iSize;
                 piz.BeregnPris();
+            }
+
+            foreach (Drikkevare driva in DrikkevarerMenu)
+            {
+                driva.Size = iSize;
+                driva.BeregnPris();
             }
         }
     }

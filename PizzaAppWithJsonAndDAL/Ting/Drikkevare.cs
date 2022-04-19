@@ -8,12 +8,35 @@ namespace PizzaAppWithJsonAndDAL.Ting
 {
     internal class Drikkevare : Varer
     {
-        Drikkevare(int iId, string iNavn, double iPris, size iSize)
+        public double OriginalPris { get; set; }
+        private double normalPris, storPris;
+        public Drikkevare()
+        {
+
+        }
+        public Drikkevare(int iId, string iNavn, double iPris, size iSize)
         {
             Id = iId;
             Navn = iNavn;
-            Pris = iPris;
+            OriginalPris = iPris;
             Size = iSize;
+
+            BeregnPris();
+        }
+
+        public void BeregnPris()
+        {
+            normalPris = OriginalPris * (int)size.Normal;
+            storPris = OriginalPris * (int)size.Stor;
+            if (Size == size.Stor)
+            {
+                Pris = storPris;
+            }
+            else
+            {
+                Pris = normalPris;
+            }
+
         }
     }
 }

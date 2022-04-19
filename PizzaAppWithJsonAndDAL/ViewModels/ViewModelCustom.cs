@@ -234,7 +234,7 @@ namespace PizzaAppWithJsonAndDAL.ViewModels
             UpdateAntalToppingsLabel();
         }
 
-        public void SkiftBundPåPizza()
+        public void SkiftBundPaaPizza()
         {
             if (pizzaToCustomize.Bund.Id != BundeSelectedItem.menuID)
             {
@@ -250,7 +250,7 @@ namespace PizzaAppWithJsonAndDAL.ViewModels
                 }
             }
         }
-        public void SkiftSovsPåPizza()
+        public void SkiftSovsPaaPizza()
         {
             if (pizzaToCustomize.Sovs.Id != SovsSelectedItem.menuID)
             {
@@ -266,7 +266,7 @@ namespace PizzaAppWithJsonAndDAL.ViewModels
                 }
             }
         }
-        public void SkiftOstPåPizza()
+        public void SkiftOstPaaPizza()
         {
             if (pizzaToCustomize.Ost.Id != OstSelectedItem.menuID)
             {
@@ -282,7 +282,7 @@ namespace PizzaAppWithJsonAndDAL.ViewModels
                 }
             }
         }
-        public void SkiftToppingPåPizza()
+        public void SkiftToppingPaaPizza()
         {
             //Go through the list of toppings and add/remove checked/unchecked toppings
             foreach(ToppingPresenterCheck tpc in TextListeMedToppings)

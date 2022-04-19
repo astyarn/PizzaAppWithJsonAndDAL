@@ -19,6 +19,9 @@
     <None Update="Json\bunde.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="Json\drikkevarer.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Json\oste.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

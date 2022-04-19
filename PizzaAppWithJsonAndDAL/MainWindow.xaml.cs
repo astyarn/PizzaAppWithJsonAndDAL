@@ -92,6 +92,14 @@ namespace PizzaAppWithJsonAndDAL
 
             var data5 = JsonConvert.SerializeObject(ocPizza);
             File.WriteAllText("pizza.json", data5);
+            
+
+            ObservableCollection<Drikkevare> listDrikke = new ObservableCollection<Drikkevare>();
+            listDrikke.Add(new Drikkevare(0, "Pepsi", 20, Varer.size.Normal));
+            listDrikke.Add(new Drikkevare(0, "Sprite", 22, Varer.size.Normal));
+            listDrikke.Add(new Drikkevare(0, "Cocio", 24, Varer.size.Normal));
+            var data6 = JsonConvert.SerializeObject(listDrikke);
+            File.WriteAllText("drikkevarer.json", data6);
             */
         }
 
@@ -111,8 +119,10 @@ namespace PizzaAppWithJsonAndDAL
             //Do this with ID of selected pizza
             //Just push an int to the new window
             CustomPizzaWindow customPizzaWindow = new CustomPizzaWindow(vm.GetSelectedPizzaId(), vm.MainSizeSelection);
+
             customPizzaWindow.ShowDialog();
-            if(customPizzaWindow.PizzaWasCustomized && customPizzaWindow.CustomizedPizza != null)
+
+            if (customPizzaWindow.PizzaWasCustomized && customPizzaWindow.CustomizedPizza != null)
             {
                 //Put customized pizza i Kurv
                 Pizza test = new Pizza();
