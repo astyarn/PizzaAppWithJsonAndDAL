@@ -112,6 +112,8 @@ namespace PizzaAppWithJsonAndDAL.ViewModels
             }
             TextListeMedToppings = temp;
         }
+
+        //
         public void BundTilSelectionBox()
         {
             ObservableCollection<IngredientPresenter> temp = new ObservableCollection<IngredientPresenter>();
