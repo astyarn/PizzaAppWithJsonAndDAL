@@ -62,7 +62,7 @@ namespace PizzaAppWithJsonAndDAL.Ting
                 if (item is Drikkevare)
                 {
                     string t = $"{item.Navn} ({item.Size}) {item.Pris} kr.";
-                    VareBeskrivelser.Add(new ViewModels.VarePresenter(item.Id, t));
+                    VareBeskrivelser.Add(new ViewModels.VarePresenter(item.VareKurvId, t));
                 }
             }
             return VareBeskrivelser;
