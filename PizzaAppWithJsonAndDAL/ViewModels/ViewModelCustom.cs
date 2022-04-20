@@ -112,7 +112,21 @@ namespace PizzaAppWithJsonAndDAL.ViewModels
             }
             TextListeMedToppings = temp;
         }
-
+        public void ToppingTilSelectionMenuUpdate()
+        {
+            foreach (ToppingPresenterCheck tpc in TextListeMedToppings)
+            {
+                foreach(Topping topping in ToppingListe)
+                {
+                    if (tpc.menuID == topping.Id)
+                    {
+                        tpc.menuText = $"{topping.Navn} ({topping.Pris * CustomSizeSelection.menuID}).";
+                        break;
+                    }
+                }
+                
+            }
+        }
         //
         public void BundTilSelectionBox()
         {
@@ -367,7 +381,7 @@ namespace PizzaAppWithJsonAndDAL.ViewModels
             int tempBundId = BundeSelectedItem.menuID;
             int tempSovsId = SovsSelectedItem.menuID;
             int tempOstId = OstSelectedItem.menuID;
-            ToppingTilSelectionMenu();
+            ToppingTilSelectionMenuUpdate();
             BundTilSelectionBox();
             SovsTilSelectionBox();
             OstTilSelectionBox();
