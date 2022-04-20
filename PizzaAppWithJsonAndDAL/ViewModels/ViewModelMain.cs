@@ -30,11 +30,36 @@ namespace PizzaAppWithJsonAndDAL.ViewModels
             MainSizeSelection = MainSizeOptions[0]; //sætter normal til at være preselected (udløser stadig et change event!!!)
         }
         //Metoder
-
-        public int GetSelectedPizzaId()
+        /// <summary>
+        /// Returns the Id of the selected object in the Menu
+        /// </summary>
+        /// <returns>Returns Id of selected items as int</returns>
+        public int GetSelectedVareId()
         {
             return SelectionMenu.menuID;
         }
+        /// <summary>
+        /// Checks if the given ID belongs to a Pizza object
+        /// </summary>
+        /// <param name="iId">Id of a Vare</param>
+        /// <returns>Returns true if the Id belongs to a Vare of the type Pizza</returns>
+        public bool IsItAPizza(int iId)
+        {
+            Varer obj = dal.GetVareById(iId);
+            if (obj == null)
+            { 
+                return false; 
+            }
+            else if (obj is Pizza)
+            { 
+                return true; 
+            }
+            else
+            { 
+                return false; 
+            }
+        }
+
 
         public void LægVareIKurvFraMenu()
         {
