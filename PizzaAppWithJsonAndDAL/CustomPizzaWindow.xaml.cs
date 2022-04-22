@@ -44,13 +44,13 @@ namespace PizzaAppWithJsonAndDAL
             //{
             //    vm.ToppingTæller++;
             //    vm.UpdateAntalToppingsLabel();
-                
+
             //}
             //else
             //{
             //    cb.IsChecked = false;
             //}
-
+            vm.CountNumberOfToppingsSelected();
         }
 
         private void CheckBoxZone_UnChecked(object sender, RoutedEventArgs e)
@@ -63,6 +63,7 @@ namespace PizzaAppWithJsonAndDAL
             //else
             //{
             //}
+            vm.CountNumberOfToppingsSelected();
         }
 
         private void LægCustomizedPizzaIKurv(object sender, RoutedEventArgs e)

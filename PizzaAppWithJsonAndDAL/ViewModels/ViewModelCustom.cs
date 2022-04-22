@@ -350,6 +350,20 @@ namespace PizzaAppWithJsonAndDAL.ViewModels
             AntalToppings = $"{ToppingTæller}/4 mulige toppings"; 
         }
 
+        public void CountNumberOfToppingsSelected()
+        {
+            int CountingSelectedToppings = 0;
+            foreach (ToppingPresenterCheck tpc in TextListeMedToppings)
+            {
+                if(tpc.Checked == true)
+                {
+                    CountingSelectedToppings++;
+                }
+            }
+            ToppingTæller = CountingSelectedToppings;
+            UpdateAntalToppingsLabel();
+        }
+
         //public void ChangeVareSizeCustom()
         //{
         //    Varer.size iSize;
