@@ -106,13 +106,11 @@ namespace PizzaAppWithJsonAndDAL
         private void TilføjVareTilVarekurv(object sender, RoutedEventArgs e)
         {
             vm.LægVareIKurvFraMenu();
-            //Count Pizza and Drikkevarer, give discount if applicable
         }
 
         private void FjernVareFraVarekurv(object sender, RoutedEventArgs e)
         {
             vm.FjernVareFraKurvMedVareKurvId();
-            //also count Pizza and Drikkevarer here, remove discount if necessary
         }
 
         private void CustomizeSelctedPizza(object sender, RoutedEventArgs e)

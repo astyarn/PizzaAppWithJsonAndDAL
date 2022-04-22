@@ -30,6 +30,8 @@ namespace PizzaAppWithJsonAndDAL.Ting
             Inventar.Add(input);
             //OpdaterVareKurvTekst();
             _tællerVareKurvId++;
+
+            //Count Pizza and Drikkevarer, give discount if applicable
         }
 
         public void FjernVare(int VareKurvId)
@@ -42,6 +44,7 @@ namespace PizzaAppWithJsonAndDAL.Ting
                     break;
                 }
             }
+            //also count Pizza and Drikkevarer here, remove discount if necessary
         }
 
         public ObservableCollection<VarePresenter> OpdaterVareKurvTekst()
