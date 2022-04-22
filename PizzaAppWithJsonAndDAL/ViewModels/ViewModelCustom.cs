@@ -21,13 +21,13 @@ namespace PizzaAppWithJsonAndDAL.ViewModels
         public ObservableCollection<VarePresenter> CustomSizeOptions { get; set; }
         public VarePresenter CustomSizeSelection { get; set; }
 
-        private ObservableCollection<ToppingPresenterCheck> _listeMedToppings;
+        private ObservableCollection<ToppingPresenterCheck> _textListeMedToppings;
         public ObservableCollection<ToppingPresenterCheck> TextListeMedToppings
         {
-            get { return _listeMedToppings; }
+            get { return _textListeMedToppings; }
             set
             {
-                _listeMedToppings = value;
+                _textListeMedToppings = value;
                 OnPropertyChanged(nameof(TextListeMedToppings));
             }
         }
