@@ -70,6 +70,7 @@ namespace PizzaAppWithJsonAndDAL.Ting
 
         public double UdregnKurvSamletPris()
         {
+            //ADD CHECK for price reduction
             double samletPris = 0;
             foreach (Varer item in Inventar)
             {
