@@ -31,7 +31,6 @@ namespace PizzaAppWithJsonAndDAL.ViewModels
                 OnPropertyChanged(nameof(TextListeMedToppings));
             }
         }
-        public int ToppingTæller { get; set; }
 
         private ObservableCollection<IngredientPresenter> _textListeMedBunde;
         public ObservableCollection<IngredientPresenter> TextListeMedBunde
@@ -99,6 +98,7 @@ namespace PizzaAppWithJsonAndDAL.ViewModels
                 OnPropertyChanged(nameof(AntalToppings));
             }
         }
+        public int ToppingTæller { get; set; }
 
         public void ToppingTilSelectionMenu()
         {
