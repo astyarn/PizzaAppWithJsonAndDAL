@@ -38,31 +38,31 @@ namespace PizzaAppWithJsonAndDAL
 
         private void CheckBoxZone_Checked(object sender, RoutedEventArgs e)
         {
-            CheckBox cb = sender as CheckBox;
+            //CheckBox cb = sender as CheckBox;
 
-            if(vm.ToppingTæller < 4)
-            {
-                vm.ToppingTæller++;
-                vm.UpdateAntalToppingsLabel();
+            //if(vm.ToppingTæller < 4)
+            //{
+            //    vm.ToppingTæller++;
+            //    vm.UpdateAntalToppingsLabel();
                 
-            }
-            else
-            {
-                cb.IsChecked = false;
-            }
+            //}
+            //else
+            //{
+            //    cb.IsChecked = false;
+            //}
 
         }
 
         private void CheckBoxZone_UnChecked(object sender, RoutedEventArgs e)
         {
-            if (vm.ToppingTæller > 0)
-            {
-                vm.ToppingTæller--;
-                vm.UpdateAntalToppingsLabel();
-            }
-            else
-            {
-            }
+            //if (vm.ToppingTæller > 0)
+            //{
+            //    vm.ToppingTæller--;
+            //    vm.UpdateAntalToppingsLabel();
+            //}
+            //else
+            //{
+            //}
         }
 
         private void LægCustomizedPizzaIKurv(object sender, RoutedEventArgs e)
