@@ -50,7 +50,17 @@ namespace PizzaAppWithJsonAndDAL
             //{
             //    cb.IsChecked = false;
             //}
-            vm.CountNumberOfToppingsSelected();
+
+
+            //vm.CountNumberOfToppingsSelected();
+
+            CheckBox cb = sender as CheckBox;
+
+            //if(vm.ToppingTæller > 4)
+            //{
+            //    cb.IsChecked = false;
+            //}
+            vm.CheckToppingLimit(cb);
         }
 
         private void CheckBoxZone_UnChecked(object sender, RoutedEventArgs e)
@@ -63,7 +73,9 @@ namespace PizzaAppWithJsonAndDAL
             //else
             //{
             //}
-            vm.CountNumberOfToppingsSelected();
+            //vm.CountNumberOfToppingsSelected();
+            CheckBox cb = sender as CheckBox;
+            vm.CheckToppingLimit(cb);
         }
 
         private void LægCustomizedPizzaIKurv(object sender, RoutedEventArgs e)

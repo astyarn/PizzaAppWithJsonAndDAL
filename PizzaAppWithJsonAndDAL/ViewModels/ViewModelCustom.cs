@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 
 namespace PizzaAppWithJsonAndDAL.ViewModels
 {
@@ -361,7 +362,20 @@ namespace PizzaAppWithJsonAndDAL.ViewModels
                 }
             }
             ToppingTæller = CountingSelectedToppings;
-            UpdateAntalToppingsLabel();
+            //UpdateAntalToppingsLabel();
+        }
+
+        public void CheckToppingLimit(CheckBox iCb)
+        {
+            CountNumberOfToppingsSelected();
+            if(ToppingTæller > 4)
+            {
+                iCb.IsChecked = false;
+            }
+            else
+            { 
+                UpdateAntalToppingsLabel();
+            }
         }
 
         //public void ChangeVareSizeCustom()
