@@ -75,6 +75,37 @@ namespace PizzaAppWithJsonAndDAL.Ting
             }
 
         }
-
+        public void CalculateDiscountPrice()
+        {
+            double tempPizzaPrice = 0;
+            tempPizzaPrice += Sovs.Pris + Ost.Pris; //The bund is omitted since the discount is that Bund is free
+            if (PizzaTopping != null)
+            {
+                foreach (Topping top in PizzaTopping)
+                {
+                    tempPizzaPrice += top.Pris;
+                }
+            }
+            //Calculated Price is direktly applied to pizzaprice to prevent the saved prices to be overridden
+            if (Size == size.Stor)
+            {
+                Pris = tempPizzaPrice * (int)size.Stor;
+            }
+            else
+            {
+                Pris = tempPizzaPrice * (int)size.Normal;
+            }
+        }
+        public void ResetPriceFromDiscount()
+        {
+            if (Size == size.Stor)
+            {
+                Pris = storPris;
+            }
+            else
+            {
+                Pris = normalPris;
+            }
+        }
     }
 }

@@ -15,6 +15,9 @@ namespace PizzaAppWithJsonAndDAL.Ting
     {
         public ObservableCollection<Varer> Inventar { get; set; }
         public bool IsThereADiscount { get; set; }
+
+        public int KurvIDofDiscountedPizza { get; set; }
+
         VarerDAL dal;
         int _tællerVareKurvId;      //Bruges til at give objecterne i varekurven et unikt ID at tage fat i.
         public Kurv()
@@ -60,25 +63,43 @@ namespace PizzaAppWithJsonAndDAL.Ting
 
             if(pizzaCount >= 2 && drikkeCount >= 2)
             {
+                
+                ResetPizzaDiscountPrice(KurvIDofDiscountedPizza);
                 IsThereADiscount = true;
+                FindTheCheapestPizza();
             }
             else
             {
-                IsThereADiscount= false;
+                if (Inventar.Count() > 0 && pizzaCount > 0)
+                {
+                    ResetPizzaDiscountPrice(KurvIDofDiscountedPizza);
+                }
+                IsThereADiscount = false;
             }
         }
 
         private void FindTheCheapestPizza()
         {
-            List<Varer> cheapPizzaList = Inventar.Where(vare => vare is Pizza).ToList();
+            List<Varer> PizzaList = Inventar.Where(vare => vare is Pizza).ToList();
 
             //Find the cheapest price
-            double cheapestPizzaPrice = Inventar.Min(vare => vare.Pris && vare is Pizza);
+            double cheapestPizzaPrice = PizzaList.Min(vare => vare.Pris);
 
-            //Determine the Pizza's with the cheapest price
-            
+            //Determine the Pizzas with the cheapest price. Select the first with the cheapest Bund price
+            List<Varer> cheapPizzaList = PizzaList.Where(pizza => pizza.Pris == cheapestPizzaPrice).ToList();
+
+            double cheapestBundPrice = cheapPizzaList.Min(pizza => (pizza as Pizza).Bund.Pris);
+
+            Varer cheapestPizza = cheapPizzaList.Where(pizza => (pizza as Pizza).Bund.Pris == cheapestBundPrice).First();
+            Debug.WriteLine($"Den valgte billigste pizza med billigste bund er: {cheapestPizza.Navn} på plads nr. {Inventar.IndexOf(cheapestPizza)} \n");
+            (cheapestPizza as Pizza).CalculateDiscountPrice();
+            KurvIDofDiscountedPizza = cheapestPizza.VareKurvId;
         }
+        private void ResetPizzaDiscountPrice(int iKurvID)
+        {
+                (Inventar.Where(pizza => pizza.VareKurvId == KurvIDofDiscountedPizza).First() as Pizza).ResetPriceFromDiscount();
 
+        }
 
         public ObservableCollection<VarePresenter> OpdaterVareKurvTekst()
         {
