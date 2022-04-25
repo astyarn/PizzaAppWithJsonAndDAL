@@ -3,6 +3,7 @@ using PizzaAppWithJsonAndDAL.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -32,6 +33,10 @@ namespace PizzaAppWithJsonAndDAL.Ting
             _tællerVareKurvId++;
 
             //Count Pizza and Drikkevarer, give discount if applicable
+            int pizzaCount = Inventar.Where(temp => temp != null && temp is Pizza).Count();
+            int drikkeCount = Inventar.Where(temp => temp != null && temp is Drikkevare).Count();
+            Debug.WriteLine($"Der var {pizzaCount} pizzaer \n");
+            Debug.WriteLine($"Der var {drikkeCount} Drikkevarer \n");
         }
 
         public void FjernVare(int VareKurvId)
