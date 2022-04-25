@@ -362,9 +362,12 @@ namespace PizzaAppWithJsonAndDAL.ViewModels
                 }
             }
             ToppingTæller = CountingSelectedToppings;
-            //UpdateAntalToppingsLabel();
         }
 
+        /// <summary>
+        /// Run a check if the user is trying to add a possible 5th topping to the pizza
+        /// </summary>
+        /// <param name="iCb">The CheckBox belonging to the topping beeing selected</param>
         public void CheckToppingLimit(CheckBox iCb)
         {
             CountNumberOfToppingsSelected();
@@ -377,20 +380,6 @@ namespace PizzaAppWithJsonAndDAL.ViewModels
                 UpdateAntalToppingsLabel();
             }
         }
-
-        //public void ChangeVareSizeCustom()
-        //{
-        //    Varer.size iSize;
-        //    if (CustomSizeSelection.menuID == 2)
-        //    {
-        //        iSize = Varer.size.Stor;
-        //    }
-        //    else
-        //    {
-        //        iSize = Varer.size.Normal;
-        //    }
-        //    dal.SkiftStørrelsePåPizza(iSize);
-        //}
 
         public void SætSizePåPizza()
         {
