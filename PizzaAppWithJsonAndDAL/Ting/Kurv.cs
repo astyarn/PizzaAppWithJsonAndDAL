@@ -14,6 +14,7 @@ namespace PizzaAppWithJsonAndDAL.Ting
     internal class Kurv
     {
         public ObservableCollection<Varer> Inventar { get; set; }
+        public bool IsThereADiscount { get; set; }
         VarerDAL dal;
         int _tællerVareKurvId;      //Bruges til at give objecterne i varekurven et unikt ID at tage fat i.
         public Kurv()
@@ -21,7 +22,7 @@ namespace PizzaAppWithJsonAndDAL.Ting
             Inventar = new ObservableCollection<Varer>();
             _tællerVareKurvId = 0;
             dal = new VarerDAL();
-   
+            IsThereADiscount = false;
         }
 
         public void TilføjVare(Varer input)
@@ -33,10 +34,7 @@ namespace PizzaAppWithJsonAndDAL.Ting
             _tællerVareKurvId++;
 
             //Count Pizza and Drikkevarer, give discount if applicable
-            int pizzaCount = Inventar.Where(temp => temp != null && temp is Pizza).Count();
-            int drikkeCount = Inventar.Where(temp => temp != null && temp is Drikkevare).Count();
-            Debug.WriteLine($"Der var {pizzaCount} pizzaer \n");
-            Debug.WriteLine($"Der var {drikkeCount} Drikkevarer \n");
+            CountVarerAndDetermineDiscount();
         }
 
         public void FjernVare(int VareKurvId)
@@ -50,7 +48,37 @@ namespace PizzaAppWithJsonAndDAL.Ting
                 }
             }
             //also count Pizza and Drikkevarer here, remove discount if necessary
+            CountVarerAndDetermineDiscount();
         }
+
+        private void CountVarerAndDetermineDiscount()
+        {
+            int pizzaCount = Inventar.Where(vare => vare != null && vare is Pizza).Count();
+            int drikkeCount = Inventar.Where(vare => vare != null && vare is Drikkevare).Count();
+            Debug.WriteLine($"Der var {pizzaCount} pizzaer \n");
+            Debug.WriteLine($"Der var {drikkeCount} Drikkevarer \n");
+
+            if(pizzaCount >= 2 && drikkeCount >= 2)
+            {
+                IsThereADiscount = true;
+            }
+            else
+            {
+                IsThereADiscount= false;
+            }
+        }
+
+        private void FindTheCheapestPizza()
+        {
+            List<Varer> cheapPizzaList = Inventar.Where(vare => vare is Pizza).ToList();
+
+            //Find the cheapest price
+            double cheapestPizzaPrice = Inventar.Min(vare => vare.Pris && vare is Pizza);
+
+            //Determine the Pizza's with the cheapest price
+            
+        }
+
 
         public ObservableCollection<VarePresenter> OpdaterVareKurvTekst()
         {
