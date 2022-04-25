@@ -366,8 +366,9 @@ namespace PizzaAppWithJsonAndDAL.ViewModels
 
         /// <summary>
         /// Run a check if the user is trying to add a possible 5th topping to the pizza
+        /// Prevents the checkbox from being set true if it would mean having 5 selected
         /// </summary>
-        /// <param name="iCb">The CheckBox belonging to the topping beeing selected</param>
+        /// <param name="iCb">Reference to the CheckBox object belonging to the topping being selected</param>
         public void CheckToppingLimit(CheckBox iCb)
         {
             CountNumberOfToppingsSelected();
