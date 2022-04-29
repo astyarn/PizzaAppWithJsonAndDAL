@@ -95,7 +95,7 @@ namespace PizzaAppWithJsonAndDAL.ViewModels
             TextSamletPrisAfKurv = s;
             if(Varekurv.IsThereADiscount)
             {
-                DiscountText = "Der er rabat!";
+                DiscountText = "[Der er rabat!]";
             }
             else
             {

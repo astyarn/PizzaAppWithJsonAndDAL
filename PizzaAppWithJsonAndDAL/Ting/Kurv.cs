@@ -32,6 +32,10 @@ namespace PizzaAppWithJsonAndDAL.Ting
         {
             //Inventar.Add(dal.GetPizzaById(id));
             input.VareKurvId = _tællerVareKurvId;
+            if(input is Pizza)
+            {
+                (input as Pizza).GenerateName();
+            }
             Inventar.Add(input);
             //OpdaterVareKurvTekst();
             _tællerVareKurvId++;

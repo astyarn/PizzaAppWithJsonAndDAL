@@ -14,9 +14,11 @@ namespace PizzaAppWithJsonAndDAL.Ting
         public Ost Ost { get; set; }
         public ObservableCollection<Topping> PizzaTopping { get; set; }
 
-        //double NormalPris, StorPris;
         public double NormalPris { get; set; }
         public double StorPris { get; set; }
+
+        public string NameDiscount { get; set; }
+        public string NameNormal { get; set; }
 
         public Pizza()
         {
@@ -27,6 +29,8 @@ namespace PizzaAppWithJsonAndDAL.Ting
         {
             Id = iId;
             Navn = iNavn;
+            //NameNormal = Navn;
+            //NameDiscount = "["+Navn+"]";
 
             Size = iSize;
 
@@ -77,6 +81,12 @@ namespace PizzaAppWithJsonAndDAL.Ting
             }
 
         }
+
+        public void GenerateName()
+        {
+            NameNormal = Navn;
+            NameDiscount = "[" + Navn + "]";
+        }
         public void CalculateDiscountPrice()
         {
             double tempPizzaPrice = 0;
@@ -97,6 +107,7 @@ namespace PizzaAppWithJsonAndDAL.Ting
             {
                 Pris = tempPizzaPrice * (int)size.Normal;
             }
+            Navn = NameDiscount;
         }
         public void ResetPriceFromDiscount()
         {
@@ -108,6 +119,7 @@ namespace PizzaAppWithJsonAndDAL.Ting
             {
                 Pris = NormalPris;
             }
+            Navn = NameNormal;
         }
     }
 }
