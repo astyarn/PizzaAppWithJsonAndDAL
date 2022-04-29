@@ -28,7 +28,7 @@
         <Button Content="Fjern" HorizontalAlignment="Left" Margin="715,420,0,0" VerticalAlignment="Top" Width="60" Click="FjernVareFraVarekurv" FontSize="16"/>
         <Button Content="Customize" HorizontalAlignment="Left" Margin="425,390,0,0" VerticalAlignment="Top" Width="90" Click="CustomizeSelctedPizza" FontSize="16"/>
         <TextBlock Margin="535,0,425,426" TextWrapping="Wrap" Text="{Binding TextSamletPrisAfKurv}" VerticalAlignment="Bottom" FontSize="16"/>
-        <ComboBox ItemsSource="{Binding MainSizeOptions}" SelectedItem="{Binding MainSizeSelection}" Margin="425,0,595,366" FontSize="16" Height="40" VerticalAlignment="Bottom" SelectionChanged="ComboBox_SelectionChanged" >
+        <ComboBox ItemsSource="{Binding MainSizeOptions}" SelectedItem="{Binding MainSizeSelection}" Margin="425,0,595,300" FontSize="16" Height="40" VerticalAlignment="Bottom" SelectionChanged="ComboBox_SelectionChanged" >
             <ComboBox.ItemTemplate>
                 <DataTemplate>
 
@@ -37,6 +37,7 @@
                 </DataTemplate>
             </ComboBox.ItemTemplate>
         </ComboBox>
+        <TextBlock Margin="535,0,425,380" TextWrapping="Wrap" Text="{Binding DiscountText}" VerticalAlignment="Bottom" FontSize="16"/>
 
     </Grid>
 </Window>

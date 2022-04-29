@@ -93,6 +93,14 @@ namespace PizzaAppWithJsonAndDAL.ViewModels
         {
             string s = $"Samlet ordre pris: {Varekurv.UdregnKurvSamletPris()} Kr.";
             TextSamletPrisAfKurv = s;
+            if(Varekurv.IsThereADiscount)
+            {
+                DiscountText = "Der er rabat!";
+            }
+            else
+            {
+                DiscountText = "-";
+            }
         }
 
         public void ChangeVareSize()
@@ -159,6 +167,17 @@ namespace PizzaAppWithJsonAndDAL.ViewModels
             set { 
                 _textSamletPrisAfKurv = value; 
                 OnPropertyChanged(nameof(TextSamletPrisAfKurv));
+            }
+        }
+
+        private string _discountText;
+        public string DiscountText
+        {
+            get { return _discountText; }
+            set
+            {
+                _discountText = value;
+                OnPropertyChanged(nameof(DiscountText));
             }
         }
 
