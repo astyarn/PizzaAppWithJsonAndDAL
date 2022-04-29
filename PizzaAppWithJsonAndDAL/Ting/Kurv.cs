@@ -97,7 +97,14 @@ namespace PizzaAppWithJsonAndDAL.Ting
         }
         private void ResetPizzaDiscountPrice(int iKurvID)
         {
-                (Inventar.Where(pizza => pizza.VareKurvId == KurvIDofDiscountedPizza).First() as Pizza)?.ResetPriceFromDiscount();
+            //Try to find the pizza object that had a discount applied
+            var p = (Inventar.Where(pizza => pizza.VareKurvId == KurvIDofDiscountedPizza).FirstOrDefault() as Pizza);
+
+            //Tjek if the pizza that had discount stil existed in the collection
+            if (p!=null)
+            {
+                p.ResetPriceFromDiscount(); //Reset discount on the pizza
+            }
                 
         }
 
