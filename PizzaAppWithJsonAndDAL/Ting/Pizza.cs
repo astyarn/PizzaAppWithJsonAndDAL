@@ -14,7 +14,9 @@ namespace PizzaAppWithJsonAndDAL.Ting
         public Ost Ost { get; set; }
         public ObservableCollection<Topping> PizzaTopping { get; set; }
 
-        double normalPris, storPris;
+        //double NormalPris, StorPris;
+        public double NormalPris { get; set; }
+        public double StorPris { get; set; }
 
         public Pizza()
         {
@@ -63,15 +65,15 @@ namespace PizzaAppWithJsonAndDAL.Ting
                 }
             }
 
-            normalPris = endeligPrisPåPizza * (int)size.Normal;
-            storPris = endeligPrisPåPizza * (int)size.Stor;
+            NormalPris = endeligPrisPåPizza * (int)size.Normal;
+            StorPris = endeligPrisPåPizza * (int)size.Stor;
             if (Size == size.Stor)
             {
-                Pris = storPris;
+                Pris = StorPris;
             }
             else
             {
-                Pris = normalPris;
+                Pris = NormalPris;
             }
 
         }
@@ -100,11 +102,11 @@ namespace PizzaAppWithJsonAndDAL.Ting
         {
             if (Size == size.Stor)
             {
-                Pris = storPris;
+                Pris = StorPris;
             }
             else
             {
-                Pris = normalPris;
+                Pris = NormalPris;
             }
         }
     }

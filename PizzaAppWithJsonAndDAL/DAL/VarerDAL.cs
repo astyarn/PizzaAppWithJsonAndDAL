@@ -30,6 +30,7 @@ namespace PizzaAppWithJsonAndDAL.DAL
             AlleVarer = new ObservableCollection<Varer>();
             foreach (Pizza item in PizzaMenu)
             {
+                //item.BeregnPris(); // <----- Tilføjet pga pris 0 ved første pizza
                 AlleVarer.Add(item);
             }
             foreach (Drikkevare item in DrikkevarerMenu)
@@ -178,6 +179,8 @@ namespace PizzaAppWithJsonAndDAL.DAL
                 }
 
                 nyPizza.Pris = pizzaToCopy.Pris;    //Evt erstattes af beregnPris metode fra Pizza
+                nyPizza.NormalPris = pizzaToCopy.NormalPris;
+                nyPizza.StorPris = pizzaToCopy.StorPris;
 
                 return nyPizza;
             }

@@ -97,8 +97,8 @@ namespace PizzaAppWithJsonAndDAL.Ting
         }
         private void ResetPizzaDiscountPrice(int iKurvID)
         {
-                (Inventar.Where(pizza => pizza.VareKurvId == KurvIDofDiscountedPizza).First() as Pizza).ResetPriceFromDiscount();
-
+                (Inventar.Where(pizza => pizza.VareKurvId == KurvIDofDiscountedPizza).First() as Pizza)?.ResetPriceFromDiscount();
+                
         }
 
         public ObservableCollection<VarePresenter> OpdaterVareKurvTekst()
