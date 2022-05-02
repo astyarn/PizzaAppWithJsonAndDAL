@@ -13,9 +13,9 @@ namespace PizzaAppWithJsonAndDAL.DAL
 {
     internal class VarerDAL
     {
-        //ObservableCollection<Pizza> PizzaMenu = new ObservableCollection<Pizza>();
         public ObservableCollection<Pizza> PizzaMenu { get; set; }
         public ObservableCollection<Drikkevare> DrikkevarerMenu { get; set; }
+
         ObservableCollection<Topping> ToppingListe = new ObservableCollection<Topping>();
         ObservableCollection<Bund> BundListe = new ObservableCollection<Bund>();
         ObservableCollection<Sovs> SovsListe = new ObservableCollection<Sovs>();
@@ -39,9 +39,12 @@ namespace PizzaAppWithJsonAndDAL.DAL
             }
         }
 
+        /// <summary>
+        /// Loads data from 6 json files. The files: bunde, oste, sovse, toppings, pizza and drikkevarer(.json)
+        /// contain all the information to populate menu list and allow creation of pizza's
+        /// </summary>
         private void LoadDataFromJson()
         {
-            //Insert Code that loads Varer Data from a json file
             var json1 = File.ReadAllText("Json/bunde.json");
             var json2 = File.ReadAllText("Json/oste.json");
             
@@ -59,7 +62,6 @@ namespace PizzaAppWithJsonAndDAL.DAL
             PizzaMenu = JsonConvert.DeserializeObject<ObservableCollection<Pizza>>(json3);
             DrikkevarerMenu = JsonConvert.DeserializeObject<ObservableCollection<Drikkevare>>(json6);
 
-            //Debug.WriteLine($"Der var {PizzaMenu.Count} pizzaer");
         }
 
         private void SaveDataToJson()
@@ -69,25 +71,15 @@ namespace PizzaAppWithJsonAndDAL.DAL
             File.WriteAllText("PizzariaDAL.json", data10);
         }
 
-
+        /// <summary>
+        /// Creates a Collection of VarePresenter for all the Varer to be displayed in the menu list. 
+        /// </summary>
+        /// <returns>ObservableCollection of VarePresenters containing describtion and ID of each Vare</returns>
         public ObservableCollection<ViewModels.VarePresenter> FåPizzaBeskrivelseOgId()
         {
             ObservableCollection<ViewModels.VarePresenter> temp =  new ObservableCollection<ViewModels.VarePresenter>();
-            /*foreach (Pizza item in PizzaMenu)
-            {
-                string s = $"{item.Navn} ({item.Size}) {item.Pris} kr. indeholder: " +
-                           $"{item.Bund.Navn}, {item.Sovs.Navn}, {item.Ost.Navn}, ";
-                foreach (Ting.Topping top in item.PizzaTopping)
-                {
-                    s += top.Navn + ", ";
-                }
-                temp.Add(new ViewModels.VarePresenter(item.Id, s));
-            }
-            foreach (Drikkevare item in DrikkevarerMenu)
-            {
-                string t = $"{item.Navn} ({item.Size}) {item.Pris} kr.";
-                temp.Add(new ViewModels.VarePresenter(item.Id, t));
-            }*/
+
+            //Goes through all Varer and creates a Varepresenter for them based on type (Pizza or Drikkevare)
             foreach (Varer item in AlleVarer)
             {
                 if(item is Pizza)
@@ -130,6 +122,7 @@ namespace PizzaAppWithJsonAndDAL.DAL
         {
             return OstListe;
         }
+
         /// <summary>
         /// Method to get a Varer from the DAL by using an ID
         /// </summary>
@@ -151,18 +144,6 @@ namespace PizzaAppWithJsonAndDAL.DAL
             //and perform a deepcopy based on that.
             if (tempObj is Pizza)
             {
-                /*Pizza pizzaToCopy = null;
-                foreach (Pizza item in PizzaMenu)
-                {
-                    if (item.Id == id)
-                    {
-                        pizzaToCopy = item;
-                    }
-                }
-                if (pizzaToCopy == null)
-                {
-                    return null;
-                }*/
                 Pizza pizzaToCopy = tempObj as Pizza;
                 Pizza nyPizza = new Pizza();
 
@@ -178,7 +159,7 @@ namespace PizzaAppWithJsonAndDAL.DAL
                     nyPizza.PizzaTopping.Add(new Topping(top.Id, top.Navn, top.Pris));
                 }
 
-                nyPizza.Pris = pizzaToCopy.Pris;    //Evt erstattes af beregnPris metode fra Pizza
+                nyPizza.Pris = pizzaToCopy.Pris;
                 nyPizza.NormalPris = pizzaToCopy.NormalPris;
                 nyPizza.StorPris = pizzaToCopy.StorPris;
 
@@ -199,11 +180,14 @@ namespace PizzaAppWithJsonAndDAL.DAL
             }
             else
             {
-
                 return null;
             }
         }
 
+        /// <summary>
+        /// Changes value of the size property of all the Varer. Changes size to be the input argument.
+        /// </summary>
+        /// <param name="iSize">Value the size property will be changed to</param>
         public void SkiftStørrelsePåPizza(Varer.size iSize)
         {
             foreach (Pizza piz in PizzaMenu)
