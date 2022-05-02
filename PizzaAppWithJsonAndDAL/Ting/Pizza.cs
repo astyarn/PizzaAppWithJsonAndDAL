@@ -22,15 +22,13 @@ namespace PizzaAppWithJsonAndDAL.Ting
 
         public Pizza()
         {
-
+            //Empty Constructor needed for the loading of data from Json
         }
 
         public Pizza(int iId, string iNavn, size iSize, Bund iBund, Sovs iSovs, Ost iOst, params Topping[]? iToppings)
         {
             Id = iId;
             Navn = iNavn;
-            //NameNormal = Navn;
-            //NameDiscount = "["+Navn+"]";
 
             Size = iSize;
 
@@ -46,14 +44,6 @@ namespace PizzaAppWithJsonAndDAL.Ting
                 }
             }
             BeregnPris();
-            /*if (iSize == size.Stor)
-            {
-                Pris = storPris;
-            }
-            else
-            {
-                Pris = normalPris;
-            }*/
         }
 
         public void BeregnPris()
