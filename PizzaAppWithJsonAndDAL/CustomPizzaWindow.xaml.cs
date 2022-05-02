@@ -30,7 +30,7 @@ namespace PizzaAppWithJsonAndDAL
         internal CustomPizzaWindow(int SelectedPizzaId, VarePresenter iSize)
         {
             InitializeComponent();
-            PizzaWasCustomized = true;
+            PizzaWasCustomized = false;
             vm = new ViewModelCustom(SelectedPizzaId, iSize);
 
             DataContext = vm;
@@ -88,6 +88,7 @@ namespace PizzaAppWithJsonAndDAL
             vm.pizzaToCustomize.BeregnPris();
             vm.pizzaToCustomize.Navn = $"*{vm.pizzaToCustomize.Navn}*";
             CustomizedPizza = vm.pizzaToCustomize;
+            PizzaWasCustomized = true;
             Close();
         }
 

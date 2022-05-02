@@ -26,15 +26,6 @@ namespace PizzaAppWithJsonAndDAL
     /// </summary>
     public partial class MainWindow : Window
     {
-        /*
-        ObservableCollection<Bund> ocbund = new ObservableCollection<Bund>();
-        ObservableCollection<Sovs> ocsovs = new ObservableCollection<Sovs>();
-        ObservableCollection<Ost> ocost = new ObservableCollection<Ost>();
-        ObservableCollection<Topping> octop = new ObservableCollection<Topping>();
-        ObservableCollection<Pizza> ocPizza = new ObservableCollection<Pizza>();
-        */
-
-        
 
         ViewModelMain vm;
         public MainWindow()
@@ -43,90 +34,33 @@ namespace PizzaAppWithJsonAndDAL
             
             vm = new ViewModelMain();
             DataContext = vm;
-
-            /*
-            Bund lysbund = new Bund(0, "Lys bund", 10);
-            Bund grovbund = new Bund(1, "Grov bund", 15);
-            ocbund.Add(lysbund);
-            ocbund.Add(grovbund);
-
-            Sovs tomatsovs = new Sovs(0, "Tomatsovs", 10);
-            Sovs kødsovs = new Sovs(1, "Kødsovs", 15);
-            ocsovs.Add(tomatsovs);
-            ocsovs.Add(kødsovs);
-
-            Ost mozzarella = new Ost(0, "Mozzarella", 10);
-            Ost cheddar = new Ost(1, "Cheddar", 15);
-            ocost.Add(mozzarella);
-            ocost.Add(cheddar);
-
-            Topping skinke = new Topping(0, "Skinke", 5);
-            Topping kebab = new Topping(1, "Kebab", 6);
-            Topping bacon = new Topping(2, "Bacon", 7);
-            Topping salat = new Topping(3, "Salat", 10);
-            Topping pepperoni = new Topping(4, "Pepperoni", 5.5);
-            octop.Add(skinke);
-            octop.Add(kebab);
-            octop.Add(bacon);
-            octop.Add(salat);
-            octop.Add(pepperoni);
-
-            Pizza margherita = new Pizza(0, "Margherita", Varer.size.Normal, lysbund, tomatsovs, mozzarella);
-            Pizza salatpizza = new Pizza(1, "Salatpizza", Varer.size.Normal, grovbund, tomatsovs, cheddar, salat, kebab);
-            Pizza kødpizza = new Pizza(2, "Kødpizza", Varer.size.Normal, lysbund, kødsovs, mozzarella, bacon, skinke, pepperoni);
-            ocPizza.Add(margherita);
-            ocPizza.Add(salatpizza);
-            ocPizza.Add(kødpizza);
-
-            var data1 = JsonConvert.SerializeObject(ocbund);
-            File.WriteAllText("bunde.json", data1);
-
-            var data2 = JsonConvert.SerializeObject(ocsovs);
-            File.WriteAllText("sovse.json", data2);
-
-            var data3 = JsonConvert.SerializeObject(ocost);
-            File.WriteAllText("oste.json", data3);
-
-            var data4 = JsonConvert.SerializeObject(octop);
-            File.WriteAllText("toppings.json", data4);
-
-            var data5 = JsonConvert.SerializeObject(ocPizza);
-            File.WriteAllText("pizza.json", data5);
-            
-
-            ObservableCollection<Drikkevare> listDrikke = new ObservableCollection<Drikkevare>();
-            listDrikke.Add(new Drikkevare(0, "Pepsi", 20, Varer.size.Normal));
-            listDrikke.Add(new Drikkevare(0, "Sprite", 22, Varer.size.Normal));
-            listDrikke.Add(new Drikkevare(0, "Cocio", 24, Varer.size.Normal));
-            var data6 = JsonConvert.SerializeObject(listDrikke);
-            File.WriteAllText("drikkevarer.json", data6);
-            */
         }
 
         private void TilføjVareTilVarekurv(object sender, RoutedEventArgs e)
         {
+            //Add a Vare selected from menu to the cart/kurv and displays it
             vm.LægVareIKurvFraMenu();
         }
 
         private void FjernVareFraVarekurv(object sender, RoutedEventArgs e)
         {
+            //Removes a selected Vare from the cart/kurv list
             vm.FjernVareFraKurvMedVareKurvId();
         }
 
         private void CustomizeSelctedPizza(object sender, RoutedEventArgs e)
         {
-            //Open CustomPizzawindow and send the current selected Pizza to it!
-            //Do this with ID of selected pizza
-            //Just push an int to the new window
+            //Open CustomPizzawindow and send the current selected PizzaID to it!
             if (vm.IsItAPizza(vm.GetSelectedVareId()))
             {
                 CustomPizzaWindow customPizzaWindow = new CustomPizzaWindow(vm.GetSelectedVareId(), vm.MainSizeSelection);
 
                 customPizzaWindow.ShowDialog();
 
+                //Check if the pizza was customized and if there actually is an existing pizza
                 if (customPizzaWindow.PizzaWasCustomized && customPizzaWindow.CustomizedPizza != null)
                 {
-                    //Put customized pizza i Kurv
+                    //Put customized pizza into the Kurv
                     Pizza test = new Pizza();
                     test = customPizzaWindow.CustomizedPizza;
                     vm.LægPizzaIKurvFraCustomizering(test);
@@ -136,6 +70,7 @@ namespace PizzaAppWithJsonAndDAL
 
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            //Changes size property of all Varer
             vm.ChangeVareSize();
         }
     }
