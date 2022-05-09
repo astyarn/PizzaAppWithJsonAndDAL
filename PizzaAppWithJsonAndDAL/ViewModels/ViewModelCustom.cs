@@ -394,16 +394,26 @@ namespace PizzaAppWithJsonAndDAL.ViewModels
             }
         }
 
+
+        /// <summary>
+        /// Method saves the current selection of bund, ost, sovs comboboxes
+        /// Updates the text in the combobox selections
+        /// Sets the combobox selection back to the selections made 
+        /// </summary>
         public void OpdaterTekstPåComboboxVedSizeSkift()
         {
+            //Saves selections
             int tempBundId = BundeSelectedItem.menuID;
             int tempSovsId = SovsSelectedItem.menuID;
             int tempOstId = OstSelectedItem.menuID;
+            
+            //Update the text in the combobox lists. Resets the selections on the combobox.
             ToppingTilSelectionMenuUpdate();
             BundTilSelectionBox();
             SovsTilSelectionBox();
             OstTilSelectionBox();
 
+            //Sets selection back to what was selected before text update
             foreach (IngredientPresenter ip in TextListeMedBunde)
             {
                 if (ip.menuID == tempBundId)
@@ -430,8 +440,8 @@ namespace PizzaAppWithJsonAndDAL.ViewModels
             }
         }
 
-        public event PropertyChangedEventHandler? PropertyChanged;
 
+        public event PropertyChangedEventHandler? PropertyChanged;
         private void OnPropertyChanged(string PropertyNavn)
         {
             if (PropertyChanged != null)

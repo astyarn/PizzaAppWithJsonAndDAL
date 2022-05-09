@@ -30,7 +30,7 @@ namespace PizzaAppWithJsonAndDAL
         internal CustomPizzaWindow(int SelectedPizzaId, VarePresenter iSize)
         {
             InitializeComponent();
-            PizzaWasCustomized = false;
+            PizzaWasCustomized = false;     
             vm = new ViewModelCustom(SelectedPizzaId, iSize);
 
             DataContext = vm;
@@ -38,44 +38,14 @@ namespace PizzaAppWithJsonAndDAL
 
         private void CheckBoxZone_Checked(object sender, RoutedEventArgs e)
         {
-            //CheckBox cb = sender as CheckBox;
-
-            //if(vm.ToppingTæller < 4)
-            //{
-            //    vm.ToppingTæller++;
-            //    vm.UpdateAntalToppingsLabel();
-
-            //}
-            //else
-            //{
-            //    cb.IsChecked = false;
-            //}
-
-
-            //vm.CountNumberOfToppingsSelected();
-
             CheckBox cb = sender as CheckBox;
-
-            //if(vm.ToppingTæller > 4)
-            //{
-            //    cb.IsChecked = false;
-            //}
-            vm.CheckToppingLimit(cb);
+            vm.CheckToppingLimit(cb);           //check if user tries to add a 5th topping to the pizza
         }
 
         private void CheckBoxZone_UnChecked(object sender, RoutedEventArgs e)
         {
-            //if (vm.ToppingTæller > 0)
-            //{
-            //    vm.ToppingTæller--;
-            //    vm.UpdateAntalToppingsLabel();
-            //}
-            //else
-            //{
-            //}
-            //vm.CountNumberOfToppingsSelected();
             CheckBox cb = sender as CheckBox;
-            vm.CheckToppingLimit(cb);
+            vm.CheckToppingLimit(cb);           //check if user tries to add a 5th topping to the pizza
         }
 
         private void LægCustomizedPizzaIKurv(object sender, RoutedEventArgs e)
@@ -95,7 +65,6 @@ namespace PizzaAppWithJsonAndDAL
         private void Size_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             vm.OpdaterTekstPåComboboxVedSizeSkift();
-
         }
     }
 }
