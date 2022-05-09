@@ -50,14 +50,7 @@ namespace PizzaAppWithJsonAndDAL
 
         private void LægCustomizedPizzaIKurv(object sender, RoutedEventArgs e)
         {
-            vm.SkiftBundPaaPizza();
-            vm.SkiftSovsPaaPizza();
-            vm.SkiftOstPaaPizza();
-            vm.SkiftToppingPaaPizza();
-            vm.SætSizePåPizza();            //sætter kun pris på pizza i kurv, opdaterer ikke i customWindow
-            vm.pizzaToCustomize.BeregnPris();
-            vm.pizzaToCustomize.Navn = $"*{vm.pizzaToCustomize.Navn}*";
-            CustomizedPizza = vm.pizzaToCustomize;
+            CustomizedPizza = vm.SaveCustomizationAndPushPizzaToCart(); //Saves the changes made onto a Pizza and amkes it available for the Kurv
             PizzaWasCustomized = true;
             Close();
         }

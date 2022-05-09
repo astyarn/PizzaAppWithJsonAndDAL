@@ -440,6 +440,24 @@ namespace PizzaAppWithJsonAndDAL.ViewModels
             }
         }
 
+        /// <summary>
+        /// Takes all the changes made and saves them onto the pizza object.
+        /// Calculates new price based on changes.
+        /// Sets a new name to identify that this is a custom pizza.
+        /// </summary>
+        /// <returns>Returns Pizza with all the changes made by the user in the customization window</returns>
+        public Pizza SaveCustomizationAndPushPizzaToCart()
+        {
+            SkiftBundPaaPizza();
+            SkiftSovsPaaPizza();
+            SkiftOstPaaPizza();
+            SkiftToppingPaaPizza();
+            SætSizePåPizza();            //Sets the size on the customized pizza in order to calculate price
+            pizzaToCustomize.BeregnPris();
+            pizzaToCustomize.Navn = $"*{pizzaToCustomize.Navn}*";
+
+            return pizzaToCustomize;
+        }
 
         public event PropertyChangedEventHandler? PropertyChanged;
         private void OnPropertyChanged(string PropertyNavn)
