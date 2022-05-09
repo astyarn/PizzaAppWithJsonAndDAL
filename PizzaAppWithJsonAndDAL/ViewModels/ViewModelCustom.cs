@@ -169,8 +169,6 @@ namespace PizzaAppWithJsonAndDAL.ViewModels
 
         public Pizza pizzaToCustomize { get; set; }
         
-
-        //Pizza pizzaToCustomize;
         public ViewModelCustom(int pizzaIdToCustomize, VarePresenter iSize)
         {
             dal = new DAL.VarerDAL();
