@@ -46,9 +46,11 @@ namespace PizzaAppWithJsonAndDAL.Ting
             BeregnPris();
         }
 
+        /// <summary>
+        /// Calculates and sets the Price based on the price of the ingridients in the pizza
+        /// </summary>
         public void BeregnPris()
         {
-            //Kode ... sæt 2 priser på bagrund af en pizzapris beregnet ud fra bund, sovs, ost og toppings
             double endeligPrisPåPizza = 0;
             endeligPrisPåPizza += Bund.Pris + Sovs.Pris + Ost.Pris;
             if (PizzaTopping != null)
@@ -59,6 +61,7 @@ namespace PizzaAppWithJsonAndDAL.Ting
                 }
             }
 
+            //Adjusts prices for the differents sizes
             NormalPris = endeligPrisPåPizza * (int)size.Normal;
             StorPris = endeligPrisPåPizza * (int)size.Stor;
             if (Size == size.Stor)
@@ -72,11 +75,19 @@ namespace PizzaAppWithJsonAndDAL.Ting
 
         }
 
+        /// <summary>
+        /// Sets 2 names for each pizza, one normal and one for the case a pizza is discounted
+        /// Makes it possible that a pizza with discount shows up with brakets around the name.
+        /// </summary>
         public void GenerateName()
         {
             NameNormal = Navn;
             NameDiscount = "[" + Navn + "]";
         }
+
+        /// <summary>
+        /// Calculates new price for a pizza. Used by the pizza chosen to be discounted
+        /// </summary>
         public void CalculateDiscountPrice()
         {
             double tempPizzaPrice = 0;
@@ -99,6 +110,10 @@ namespace PizzaAppWithJsonAndDAL.Ting
             }
             Navn = NameDiscount;
         }
+
+        /// <summary>
+        /// Resets the price of the discounted pizza
+        /// </summary>
         public void ResetPriceFromDiscount()
         {
             if (Size == size.Stor)
